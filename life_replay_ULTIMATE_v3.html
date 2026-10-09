@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>인생을 다시 산다면 · Ultimate</title>
+<style>
+:root{
+  --bg:#090b0f;--panel:#141922;--panel2:#1a202b;--line:#2c3440;
+  --text:#eee7dc;--muted:#99a2ad;--gold:#d4b279;--gold2:#7d6748;
+  --green:#789c80;--red:#aa696c;--shadow:rgba(0,0,0,.46)
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{color:var(--text);font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;background:radial-gradient(circle at 12% 8%,rgba(212,178,121,.075),transparent 27%),radial-gradient(circle at 90% 84%,rgba(255,255,255,.025),transparent 28%),linear-gradient(180deg,#090b0f,#10151c 50%,#080a0d)}
+button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.fade{animation:fade .38s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.app{width:min(1200px,calc(100% - 22px));margin:0 auto;padding:18px 0 48px}.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:13px}.brand small{display:block;color:var(--gold);font-size:10px;letter-spacing:.28em;margin-bottom:5px}.brand h1{margin:0;font:500 clamp(28px,5vw,48px)/1 Georgia,serif;letter-spacing:-.04em}.identity{text-align:right;color:var(--muted);font-size:12px}.identity strong{display:block;color:var(--text);font-size:18px;margin-top:3px}
+.hud{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:12px}.hud-card{padding:10px;border:1px solid var(--line);border-radius:13px;background:rgba(20,25,34,.84);backdrop-filter:blur(10px)}.hud-card span{display:block;color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hud-card strong{display:block;margin-top:3px;font-size:17px}.mini{height:3px;background:#29313c;border-radius:99px;overflow:hidden;margin-top:6px}.mini i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:.25s}
+.main{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(315px,.68fr);gap:12px}.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(23,28,37,.97),rgba(16,20,26,.98));box-shadow:0 24px 76px var(--shadow);overflow:hidden}.progress{height:4px;background:#252c35}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:.3s}.scene{min-height:680px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column}.kicker{color:var(--gold);font-size:10px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}h2{margin:0 0 16px;font:500 clamp(28px,4vw,44px)/1.16 Georgia,serif;letter-spacing:-.035em}.story{white-space:pre-line;line-height:1.9;font-size:16px;color:#d8d1c5;max-width:770px}.quote{border-left:2px solid #6d5b40;padding:9px 0 9px 15px;margin:20px 0;color:#b7aa91;font:italic 17px/1.75 Georgia,serif}.actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}.primary,.secondary,.ghost{min-height:44px;border-radius:12px;padding:12px 16px}.primary{border:1px solid #65553e;background:linear-gradient(180deg,#d8ba87,#aa8958);color:#13110e;font-weight:800}.secondary,.ghost{border:1px solid #36404c;background:#171d25;color:var(--text)}.ghost{background:transparent;color:#bdb6aa}
+.side{padding:14px;display:flex;flex-direction:column;gap:12px}.section{border-top:1px solid #2c333d;padding-top:12px}.section:first-child{border-top:0;padding-top:0}.section h3{margin:0 0 9px;font-size:13px;color:#ddd5c8}
+.profile-wrap{position:relative}.profile-frame{width:100%;aspect-ratio:1/1;border:1px dashed #53606e;border-radius:18px;background:linear-gradient(145deg,#181e27,#11161d);display:grid;place-items:center;overflow:hidden;position:relative;cursor:pointer}.profile-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 15%,rgba(212,178,121,.08),transparent 35%);pointer-events:none}.profile-frame img{width:100%;height:100%;object-fit:cover;display:block}.profile-placeholder{text-align:center;color:#8e98a5;line-height:1.7;font-size:12px;padding:22px}.profile-placeholder b{display:block;color:#d2b98f;font-size:14px;margin-bottom:5px}.profile-actions{display:flex;gap:7px;margin-top:7px}.profile-actions button{flex:1;border:1px solid #343d48;background:#151b22;color:#aeb6c0;border-radius:9px;padding:7px;font-size:11px}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.chart-wrap{border:1px solid #2e3641;border-radius:13px;background:#11161d;padding:10px}.chart-canvas{display:block;width:100%;height:210px}.chart-legend{display:flex;flex-wrap:wrap;gap:7px 10px;margin-top:8px}.chart-key{font-size:10px;color:#9ba4af;display:flex;align-items:center;gap:5px}.chart-key i{width:12px;height:3px;border-radius:99px;display:inline-block}.meta{padding:10px;border:1px solid #2e3641;border-radius:11px;background:#151a21}.meta span{display:block;color:var(--muted);font-size:10px}.meta b{display:block;margin-top:3px;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.people-list{display:grid}.rel{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #252c35}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#222a34;color:var(--gold);font-weight:800;flex:0 0 auto}.rel-main{min-width:0;flex:1}.rel-main b{display:block;font-size:13px}.rel-main span{font-size:11px;color:var(--muted)}.rel-score{font-size:12px;color:#d7c5a7}.badge-wrap{display:flex;flex-wrap:wrap;gap:6px}.badge{padding:6px 9px;border-radius:999px;border:1px solid #39424e;font-size:11px;color:#bdb5a9}.badge.unlock{border-color:#725f40;color:#dfc798;background:#1e1a15}.log{max-height:270px;overflow:auto;padding-right:4px}.log-item{padding:9px 0;border-bottom:1px solid #252c35}.log-item b{color:var(--gold);font-size:11px}.log-item div{font-size:12px;color:#bbb4a8;line-height:1.55;margin-top:2px}
+.options,.event-list{display:grid;gap:9px;margin-top:22px}.options.two{grid-template-columns:repeat(2,minmax(0,1fr))}.option,.event-choice{width:100%;text-align:left;padding:14px 15px;border:1px solid #333d49;border-radius:13px;background:#171d25;color:var(--text);transition:.15s}.option:hover,.event-choice:hover{border-color:#6d5d43;background:#1c232d}.option strong,.event-choice b{display:block;font-size:14px}.option span,.event-choice span{display:block;color:#9099a5;font-size:12px;line-height:1.55;margin-top:4px}
+.alloc{display:grid;gap:10px;margin:24px 0}.alloc-row{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:10px}.alloc-row label{font-size:13px}.alloc-dots{display:flex;gap:5px;flex-wrap:wrap}.dot{width:22px;height:22px;border-radius:6px;border:1px solid #38414d;background:#161b22;color:#727c88;display:grid;place-items:center;font-size:11px}.dot.on{background:#6c583c;color:#f5ead8;border-color:#8a704d}.stepper{display:flex;gap:4px}.stepper button{width:30px;height:30px;border-radius:8px;border:1px solid #39424f;background:#151b22;color:#ddd}.remaining{font-size:13px;color:#cdb686}.finance-box{margin-top:18px;padding:14px;border:1px solid #313a45;border-radius:14px;background:#12171e}.finance-box h3{margin:0 0 10px;font-size:13px}.finance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.finance-btn{border:1px solid #34404b;background:#171d25;color:#aaa;border-radius:10px;padding:9px 7px;font-size:12px}.finance-btn.on{border-color:#806a49;color:#ebd8b6;background:#211c16}
+.notice{padding:12px 14px;border-radius:12px;border:1px solid #39424e;background:#151b22;color:#bdb5aa;font-size:12px;line-height:1.65}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}.result-card{padding:13px;border:1px solid #333c47;border-radius:12px;background:#171d25}.result-card span{display:block;color:var(--muted);font-size:10px}.result-card strong{display:block;margin-top:4px;font-size:20px}.big-number{font:500 clamp(38px,7vw,74px)/1 Georgia,serif}.ending-code{display:inline-block;padding:7px 10px;border:1px solid #6b593d;border-radius:999px;color:#d9be8e;font-size:11px;margin:2px 0 14px}.collection{margin-top:10px;color:#8993a0;font-size:11px}
+.overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(7,9,12,.92);backdrop-filter:blur(8px)}.panel{width:min(860px,100%);max-height:92vh;overflow:auto;border:1px solid #303946;border-radius:24px;background:linear-gradient(180deg,#161b23,#10141a);box-shadow:0 36px 110px rgba(0,0,0,.52)}.panel-inner{padding:clamp(28px,5vw,54px)}.hero{position:relative;min-height:min(840px,88vh);display:flex;align-items:center;text-align:center;overflow:hidden}.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,13,.25),rgba(8,10,13,.73)),radial-gradient(circle at 50% 16%,rgba(210,176,120,.18),transparent 18%),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'><rect width='1600' height='1100' fill='%230b0e13'/><circle cx='1180' cy='200' r='150' fill='%23c6a66d' opacity='.18'/><g stroke='%23c6a66d' opacity='.12' fill='none'><circle cx='1180' cy='200' r='210'/><circle cx='1180' cy='200' r='280'/></g><path d='M620 1100 C690 890 755 740 800 650 C850 760 920 930 980 1100Z' fill='%23182029'/><g stroke='%23a98b5c' opacity='.38'><path d='M750 790L850 790'/><path d='M720 850L880 850'/><path d='M685 925L915 925'/><path d='M645 1010L955 1010'/></g></svg>") center/cover no-repeat}.hero .panel-inner{position:relative;z-index:1;margin:auto;max-width:740px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:.26em}.hero-copy{white-space:pre-line;line-height:1.95;color:#d7d0c5}.hero-quote{margin:22px auto 0;max-width:650px;color:#b6a78c;font:italic 19px/1.75 Georgia,serif}.input{width:100%;min-height:46px;border-radius:12px;border:1px solid #39434f;background:#0f141a;color:var(--text);padding:12px 14px;outline:none;font-size:16px}
+@media(max-width:980px){.main{grid-template-columns:1fr}.side{order:2}.hud{grid-template-columns:repeat(3,1fr)}.scene{min-height:580px}.profile-frame{max-width:420px;margin:auto}.profile-actions{max-width:420px;margin:7px auto 0}}
+@media(max-width:640px){.app{width:min(100%,calc(100% - 14px));padding-top:10px}.top{align-items:center}.brand h1{font-size:30px}.identity strong{font-size:15px}.hud{grid-template-columns:repeat(2,1fr)}.options.two{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,1fr)}.scene{padding:22px 18px;min-height:620px}.alloc-row{grid-template-columns:80px 1fr}.stepper{grid-column:2}.finance-grid{grid-template-columns:1fr}.hero{min-height:760px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="brand"><small>LIFE REPLAY · ULTIMATE</small><h1>인생을 다시 산다면</h1></div><div class="identity"><span>이번 생</span><strong id="identity">아직 태어나지 않음</strong></div></div>
+  <div class="hud" id="hud"></div>
+  <div class="main">
+    <main class="card"><div class="progress"><i id="progress"></i></div><section id="scene" class="scene"></section></main>
+    <aside class="card side">
+      <div class="section profile-wrap">
+        <div class="profile-frame" id="profileFrame" role="button" tabindex="0" aria-label="캐릭터 이미지 넣기">
+          <div class="profile-placeholder" id="profilePlaceholder"><b>캐릭터 이미지</b>정사각형 이미지를 넣을 수 있습니다.<br>클릭해서 이미지 선택</div>
+          <img id="profileImg" class="hidden" alt="캐릭터 이미지">
+        </div>
+        <input type="file" id="profileInput" accept="image/*" class="hidden">
+        <div class="profile-actions"><button id="changeImage" type="button">이미지 변경</button><button id="removeImage" type="button">이미지 삭제</button></div>
+      </div>
+      <div class="section"><h3>현재 인생</h3><div class="meta-grid" id="metaGrid"></div></div>
+      <div class="section"><h3>삶의 변화 그래프</h3><div class="chart-wrap"><canvas id="statsChart" class="chart-canvas" aria-label="나이에 따른 능력치 변화 그래프"></canvas><div class="chart-legend" id="chartLegend"></div></div></div>
+      <div class="section"><h3>사람의 기록</h3><div class="people-list" id="people"></div></div>
+      <div class="section"><h3>업적</h3><div class="badge-wrap" id="badges"></div></div>
+      <div class="section"><h3>삶의 기록</h3><div class="log" id="lifeLog"></div></div>
+    </aside>
+  </div>
+</div>
+
+<div class="overlay" id="intro"><div class="panel hero fade"><div class="panel-inner"><div class="eyebrow">PROLOGUE</div><h2>인생을 다시 산다면</h2><div class="hero-copy">당신은 한 번의 삶을 끝냈습니다.
+
+이번에는 태어나는 순간부터 다시 시작합니다.
+처음에는 가진 돈도, 직업도, 집도 없습니다.
+곁에 있는 사람도 부모님뿐입니다.
+
+시간이 흐르면 사람을 만나고,
+돈을 벌고,
+무언가를 잃고,
+때로는 생각보다 너무 일찍 삶이 끝날 수도 있습니다.
+
+죽는 나이는 정해져 있지 않습니다.
+어떻게 살아왔는지가 마지막 날에도 영향을 줍니다.</div><div class="hero-quote">“사람은 죽는 날을 고를 수 없지만, 그날까지 어떤 방향으로 걸어갈지는 조금씩 선택할 수 있다.”</div><div class="actions" style="justify-content:center;margin-top:26px"><button class="primary" id="begin">0세부터 다시 살아보기</button></div></div></div></div>
+<div class="overlay hidden" id="nameModal"><div class="panel"><div class="panel-inner"><div class="eyebrow">NEW LIFE</div><h2>이번 삶의 이름을 정해주세요.</h2><p class="story">이 이름은 태어난 순간부터 마지막 기록까지 남습니다.</p><input class="input" id="nameInput" maxlength="12" placeholder="예: 준영"><div class="actions" style="margin-top:20px"><button class="primary" id="nameNext">다음</button></div></div></div></div>
+<div class="overlay hidden" id="legacyModal"><div class="panel"><div class="panel-inner"><div class="eyebrow">REINCARNATION MEMORY</div><h2 id="legacyTitle">전생에서 무엇을 가져갈까요?</h2><div class="notice" id="legacyPoints"></div><div class="options two" id="legacyOptions"></div></div></div></div>
+<div class="overlay hidden" id="birthModal"><div class="panel"><div class="panel-inner"><div class="eyebrow">AGE 0 · BIRTH</div><h2 id="birthTitle">태어났습니다.</h2><div class="story" id="birthText"></div><div class="result-grid" id="birthStats"></div><div class="actions"><button class="primary" id="startLife">첫 울음을 터뜨린다</button></div></div></div></div>
+
+<script>
+const $=id=>document.getElementById(id), clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n)), pick=a=>a[Math.floor(Math.random()*a.length)], chance=p=>Math.random()<p;
+const SAVE_KEY='lifeReplayUltimateV2';
+let meta=(()=>{try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{legacyPoints:0,runs:0,achievements:[],endings:[],profileImage:''}}catch(e){return{legacyPoints:0,runs:0,achievements:[],endings:[],profileImage:''}}})();
+meta.achievements=meta.achievements||[];meta.endings=meta.endings||[];meta.profileImage=meta.profileImage||'';
+let game=null,tempName='',pendingLegacy='future';
+const statDefs=[['happy','❤️ 행복'],['health','💪 건강'],['skill','🧠 능력'],['relation','👥 관계'],['stress','⚡ 스트레스'],['reputation','⭐ 명성']];
+const achievements=[
+ ['born','첫 페이지','0세의 삶 시작'],['firstFriend','첫 친구','처음으로 친구가 생김'],['firstJob','첫 월급','처음으로 연소득이 생김'],['firstMillion','첫 1억','순자산 1억 달성'],['tenBillion','자산가','순자산 10억 달성'],['executive','직장의 끝','임원 또는 대표 달성'],['marriage','동행','결혼함'],['parent','부모가 되다','자녀가 생김'],['trueLove','긴 동행','배우자와 30년 이상 함께함'],['healthyOld','건강한 노년','70세에 건강 80 이상'],['peaceful','평범한 행복','사망 시 행복 85 이상'],['workOnly','일밖에 몰랐던 사람','명성 80 이상, 관계 35 이하'],['bankrupt','다시 시작','마이너스 순자산 뒤 회복'],['mentor','남겨준 사람','후배에게 경험을 건넴'],['century','백세 인생','100세 이상 생존'],['collector10','열 개의 삶','엔딩 10종 발견'],['collector50','반복되는 세계','엔딩 50종 발견'],['collector100','모든 삶을 본 자','엔딩 100종 발견']
+];
+const npcNames=['민수','지훈','지아','하늘','유진','도윤','수아','현우','나연','시우','서진','다은','재윤'];
+const partnerNames=['서연','지아','수아','유진','하린','예진','도현','민재','은채','지우'];
+const careerData={none:{name:'없음',salary:0},student:{name:'학생',salary:0},jobseeker:{name:'취업 준비',salary:0},office:{name:'회사원',salary:28000000},tech:{name:'개발자',salary:32000000},public:{name:'공무원',salary:30000000},creator:{name:'창작자',salary:0},business:{name:'사업가',salary:0},retired:{name:'은퇴',salary:0}};
+const ranks=['','사원','대리','과장','차장','부장','임원'];
+function saveMeta(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(meta))}catch(e){}}
+function unlock(id){if(!meta.achievements.includes(id)){meta.achievements.push(id);saveMeta()}}
+function fmtMoney(n){n=Math.round(n||0);if(Math.abs(n)>=100000000)return (n/100000000).toFixed(Math.abs(n)%100000000===0?0:1)+'억';if(Math.abs(n)>=10000)return Math.round(n/10000).toLocaleString()+'만';return n.toLocaleString()+'원'}
+function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
+function netWorth(){return game?game.cash+game.invest+game.home-game.debt:0}
+function addLog(age,title,text){if(!game)return;game.log.push({age,title,text});if(game.log.length>140)game.log.shift()}
+function person(role){return game?.people.find(p=>p.role===role&&p.active!==false)}
+function addPerson(name,role,score=60,status='현재 인연'){if(!game)return null;const p={id:Date.now()+Math.random(),name,role,score:clamp(score),status,active:true,metAge:game.age};game.people.push(p);return p}
+function careerName(){if(!game)return'없음';if(game.career==='public'&&game.salary===0)return '공무원 준비생';if(game.career==='office'||game.career==='tech')return `${careerData[game.career].name} · ${ranks[Math.min(6,game.careerRank)]||'신입'}`;if(game.career==='business'&&game.careerRank>=5)return '사업가 · 대표';return careerData[game.career]?.name||'없음'}
+function renderEmpty(){
+ $('hud').innerHTML=statDefs.map(x=>`<div class="hud-card"><span>${x[1]}</span><strong>—</strong><div class="mini"><i style="width:0%"></i></div></div>`).join('');
+ $('metaGrid').innerHTML=[['나이','0세'],['직업','없음'],['연소득','0원'],['순자산','0원'],['현금','0원'],['투자','0원'],['주택','0원'],['부채','0원']].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+ $('people').innerHTML='';$('badges').innerHTML='';$('lifeLog').innerHTML='';const chart=$('statsChart');if(chart){const ctx=chart.getContext('2d');ctx.clearRect(0,0,chart.width,chart.height)}const legend=$('chartLegend');if(legend)legend.innerHTML='';
+ $('scene').innerHTML=`<div class="kicker">WAITING FOR A LIFE</div><h2>아직 시작되지 않은 인생입니다.</h2><div class="story">이번에는 0세부터 시작합니다.\n처음에는 가진 것도, 만난 사람도 거의 없습니다.</div>`;
+}
+function renderAll(){if(!game){renderEmpty();return}renderHud();renderMeta();renderPeople();renderBadges();renderLog();renderStatChart()}
+function renderHud(){$('hud').innerHTML=statDefs.map(([k,l])=>`<div class="hud-card"><span>${l}</span><strong>${Math.round(game[k])}</strong><div class="mini"><i style="width:${clamp(game[k])}%"></i></div></div>`).join('')}
+function renderMeta(){$('metaGrid').innerHTML=[['나이',game.age+'세'],['직업',careerName()],['연소득',fmtMoney(game.annualIncome||0)],['순자산',fmtMoney(netWorth())],['현금',fmtMoney(game.cash)],['투자',fmtMoney(game.invest)],['주택',fmtMoney(game.home)],['부채',fmtMoney(game.debt)]].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}
+const chartSeries=[['happy','행복','#d9b36c'],['health','건강','#75a987'],['skill','능력','#7f91c3'],['relation','관계','#b686ad'],['stress','스트레스','#b76b6b'],['reputation','명성','#9c9388']];
+function recordStats(){if(!game)return;game.statHistory=game.statHistory||[];const row={age:game.age};chartSeries.forEach(([k])=>row[k]=Math.round(game[k]));const i=game.statHistory.findIndex(x=>x.age===game.age);if(i>=0)game.statHistory[i]=row;else game.statHistory.push(row);game.statHistory.sort((a,b)=>a.age-b.age)}
+function renderStatChart(){const c=$('statsChart'),legend=$('chartLegend');if(!c||!game)return;legend.innerHTML=chartSeries.map(s=>`<span class="chart-key"><i style="background:${s[2]}"></i>${s[1]}</span>`).join('');const cssW=Math.max(240,c.clientWidth||300),cssH=210,dpr=Math.min(window.devicePixelRatio||1,2);c.width=Math.round(cssW*dpr);c.height=Math.round(cssH*dpr);const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cssW,cssH);const pad={l:28,r:10,t:12,b:24},w=cssW-pad.l-pad.r,h=cssH-pad.t-pad.b;ctx.strokeStyle='#29313a';ctx.lineWidth=1;ctx.fillStyle='#737d88';ctx.font='10px system-ui';[0,25,50,75,100].forEach(v=>{const py=pad.t+h-(v/100)*h;ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(pad.l+w,py);ctx.stroke();ctx.fillText(String(v),3,py+3)});const data=game.statHistory||[];if(!data.length)return;const minA=data[0].age,maxA=Math.max(minA+1,data[data.length-1].age);const x=a=>pad.l+((a-minA)/(maxA-minA))*w,y=v=>pad.t+h-(clamp(v)/100)*h;ctx.fillStyle='#737d88';ctx.fillText(minA+'세',pad.l,cssH-5);ctx.fillText(data[data.length-1].age+'세',Math.max(pad.l,cssW-42),cssH-5);chartSeries.forEach(([k,label,color])=>{ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();data.forEach((row,i)=>{const px=x(row.age),py=y(row[k]);if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)});ctx.stroke()})}
+function renderPeople(){
+ if(!game){$('people').innerHTML='';return}
+ $('people').innerHTML=game.people.map(p=>`<div class="rel"><div class="avatar">${p.name[0]}</div><div class="rel-main"><b>${p.name}</b><span>${p.role}${p.status&&p.status!=='현재 인연'?' · '+p.status:''}</span></div><div class="rel-score">${Math.round(p.score)}</div></div>`).join('')||'<div class="notice">아직 기록된 사람이 없습니다.</div>';
+}
+function renderBadges(){$('badges').innerHTML=achievements.map(a=>`<span class="badge ${meta.achievements.includes(a[0])?'unlock':''}" title="${a[2]}">${meta.achievements.includes(a[0])?'◆':'◇'} ${a[1]}</span>`).join('')}
+function renderLog(){$('lifeLog').innerHTML=game?game.log.slice().reverse().slice(0,28).map(x=>`<div class="log-item"><b>${x.age}세 · ${x.title}</b><div>${x.text}</div></div>`).join(''):''}
+
+// profile image
+function renderProfile(){if(meta.profileImage){$('profileImg').src=meta.profileImage;$('profileImg').classList.remove('hidden');$('profilePlaceholder').classList.add('hidden')}else{$('profileImg').classList.add('hidden');$('profilePlaceholder').classList.remove('hidden')}}
+function openProfilePicker(){$('profileInput').click()}
+$('profileFrame').addEventListener('click',openProfilePicker);$('profileFrame').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProfilePicker()}});$('changeImage').onclick=openProfilePicker;$('removeImage').onclick=()=>{meta.profileImage='';saveMeta();renderProfile()};
+$('profileInput').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/'))return;const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=512;c.width=s;c.height=s;const ctx=c.getContext('2d');const scale=Math.max(s/im.width,s/im.height),w=im.width*scale,h=im.height*scale;ctx.drawImage(im,(s-w)/2,(s-h)/2,w,h);meta.profileImage=c.toDataURL('image/jpeg',.84);saveMeta();renderProfile()};im.src=rd.result};rd.readAsDataURL(f);e.target.value=''})
+
+$('begin').onclick=()=>{hide('intro');show('nameModal');$('nameInput').focus()};
+$('nameNext').onclick=()=>{const n=$('nameInput').value.trim();if(!n){$('nameInput').focus();return}tempName=n;hide('nameModal');openLegacy()};$('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('nameNext').click()});
+function openLegacy(){
+ $('legacyTitle').textContent=`${tempName}, 한 가지 감각만 가져갈 수 있습니다.`;
+ $('legacyPoints').textContent=`누적 전생 포인트 ${meta.legacyPoints}P · 완료한 삶 ${meta.runs}회 · 발견 엔딩 ${meta.endings.length}/100`;
+ const opts=[['future','🔮 미래의 파편',0,'위험한 선택에서 가끔 예감이 찾아옵니다.'],['study','🧠 배움의 감각',0,'성장 과정에서 능력 상승량이 조금 커집니다.'],['people','🤝 사람의 마음',0,'관계가 깊어지는 속도가 조금 빨라집니다.'],['money','💰 돈의 감각',0,'성인이 된 뒤 자산 운용 효율이 좋아집니다.'],['health2','🌿 몸의 기억',3,'건강 회복 효율이 좋아지고 사망 위험이 조금 낮아집니다.'],['social2','🕯 관계의 기억',3,'사람 관련 선택의 효과가 더 강해집니다.'],['fortune2','⌛ 시간의 기억',5,'스트레스 누적이 줄고 매년 회복이 조금 빨라집니다.']];
+ $('legacyOptions').innerHTML=opts.map(o=>`<button class="option" data-k="${o[0]}" ${meta.legacyPoints<o[2]?'disabled':''}><strong>${o[1]} ${o[2]?`· ${o[2]}P`:''}</strong><span>${o[3]}</span></button>`).join('');
+ $('legacyOptions').querySelectorAll('.option').forEach(b=>b.onclick=()=>{const o=opts.find(x=>x[0]===b.dataset.k);if(meta.legacyPoints<o[2])return;meta.legacyPoints-=o[2];saveMeta();pendingLegacy=o[0];hide('legacyModal');rollBirth()});show('legacyModal');
+}
+function rollBirth(){
+ const home=pick([{name:'조용한 가정',desc:'부모님은 큰 표현은 없지만 생활은 안정적이었습니다.',parent:72},{name:'분주한 가정',desc:'부모님은 늘 바빴지만 당신을 위해 애썼습니다.',parent:62},{name:'다정한 가정',desc:'작은 일에도 대화를 많이 나누는 집이었습니다.',parent:82},{name:'엄격한 가정',desc:'기대와 규칙이 많은 집에서 자라게 됩니다.',parent:58}]);
+ const trait=pick([{name:'호기심 많은 아이',skill:4,happy:2},{name:'사람을 잘 따르는 아이',relation:5,happy:2},{name:'예민한 아이',skill:3,stress:5},{name:'튼튼한 아이',health:6},{name:'고집 있는 아이',skill:2,reputation:2}]);
+ window.birthPreset={home,trait};$('birthTitle').textContent=`${tempName}, 세상에 태어났습니다.`;$('birthText').textContent=`0세.\n${tempName}은(는) 아무것도 가진 것이 없는 상태로 삶을 시작합니다.\n\n${home.desc}\n주변 사람은 아직 부모님뿐입니다.\n직업도, 현금도, 투자도, 집도 없습니다.\n\n이제부터 하나씩 쌓여갑니다.`;$('birthStats').innerHTML=[['나이','0세'],['직업','없음'],['보유 자산','0원'],['첫 관계','부모님'],['가정',''+home.name],['기질',trait.name]].map(x=>`<div class="result-card"><span>${x[0]}</span><strong style="font-size:15px">${x[1]}</strong></div>`).join('');show('birthModal')
+}
+$('startLife').onclick=()=>{hide('birthModal');startGame()};
+function startGame(){
+ const b=window.birthPreset;
+ game={name:tempName,legacy:pendingLegacy,age:0,cash:0,invest:0,debt:0,home:0,salary:0,annualIncome:0,career:'none',careerRank:0,happy:62+(b.trait.happy||0),health:82+(b.trait.health||0),skill:20+(b.trait.skill||0),relation:55+(b.trait.relation||0),stress:5+(b.trait.stress||0),reputation:b.trait.reputation||0,parents:b.home.parent,people:[],log:[],flags:[],time:{work:0,study:0,health:0,people:0,rest:0},yearPoints:0,financePlan:'save',risk:0,alive:true,bankruptEver:false,partnerStartAge:null,deathReason:'',childCount:0,statHistory:[],recentEvents:[]};
+ addPerson('부모님','부모님',b.home.parent);unlock('born');addLog(0,'탄생',`${game.name}의 삶이 시작되었습니다.`);$('identity').textContent=game.name;recordStats();renderAll();renderChildhood();
+}
+const childhood=[
+ {age:0,title:n=>`${n}, 첫 번째 하루`,text:'세상은 너무 밝고 낯섭니다. 아직 할 수 있는 것은 울고, 잠들고, 누군가의 품을 느끼는 것뿐입니다.',quote:'기억나지 않는 시간도 사람을 만든다.',choices:[['부모의 품에서 잠든다',{happy:2,relation:3},'당신이 기억하지 못하는 안정감이 마음의 바닥에 쌓였습니다.'],['세상을 향해 크게 운다',{health:1,reputation:1},'첫 목소리는 작았지만 삶은 분명히 시작되었습니다.']]},
+ {age:2,title:n=>`${n}, “내가 할래”를 배우다`,text:'스스로 숟가락을 들고, 걷고, 넘어지고 다시 일어나는 시기입니다.',quote:'독립은 아주 작은 “내가 할래”에서 시작된다.',choices:[['뭐든 직접 해보려 한다',{skill:3,stress:1},'서툴러도 스스로 해본 경험이 쌓였습니다.'],['부모님에게 자주 도움을 청한다',{relation:4,happy:2},'의지하는 법과 도움받는 법을 함께 배웠습니다.']]},
+ {age:4,title:n=>`${n}, 좋아하는 것이 생기다`,text:'그림, 블록, 뛰어놀기, 이야기책. 무엇을 할 때 시간이 빨리 가는지 조금씩 알게 됩니다.',quote:'재능보다 먼저 오는 것은 오래 바라보고 싶은 마음이다.',choices:[['그림과 만들기에 빠진다',{skill:4,happy:3},'혼자 무언가를 만드는 시간이 즐거워졌습니다.'],['밖에서 뛰어노는 걸 좋아한다',{health:5,happy:3},'몸을 쓰는 즐거움을 일찍 알게 됐습니다.'],['사람들과 어울리는 걸 좋아한다',{relation:5,happy:3},'웃음소리가 많은 곳을 자연스럽게 찾게 됐습니다.']]},
+ {age:6,title:n=>`${n}, 학교에 들어가다`,text:'처음으로 가족 밖의 세계가 커집니다. 같은 반 아이들 중 한 명이 먼저 말을 걸어옵니다.',quote:'친구라는 사람은 어느 날 아무 예고 없이 인생에 들어온다.',friend:true,choices:[['먼저 같이 놀자고 한다',{relation:6,happy:4},'처음 만든 우정은 사소한 놀이에서 시작됐습니다.'],['조용히 지켜보다 천천히 친해진다',{skill:2,relation:4},'당신은 서두르지 않고 사람을 알아가는 법을 배웠습니다.'],['혼자 있는 시간이 더 좋다',{skill:4,relation:-2},'혼자 있는 법도 하나의 능력이 되었습니다.']]},
+ {age:9,title:n=>`${n}, 처음으로 비교당하다`,text:'시험 점수와 운동 실력, 친구 수까지 서로 비교되기 시작합니다.',quote:'비교는 방향을 알려주기도 하지만, 자신의 속도를 잊게 만들기도 한다.',choices:[['더 잘하고 싶어 공부한다',{skill:6,stress:3},'성취는 작은 자신감을 주었고, 동시에 더 높은 기준을 만들었습니다.'],['내가 좋아하는 것만큼은 놓치지 않는다',{happy:5,skill:2},'잘하는 것보다 좋아하는 것을 지키는 법을 배웠습니다.'],['친구와 같이 성장하려 한다',{relation:5,skill:3},'경쟁과 우정이 반드시 반대말은 아니라는 걸 알게 됐습니다.']]},
+ {age:12,title:n=>`${n}, 첫 용돈을 받다`,text:'이제 아주 작은 돈이지만 직접 쓸 수 있는 돈이 생깁니다.',quote:'처음 손에 쥔 돈은 액수보다 선택의 경험을 남긴다.',choices:[['절반을 모은다',{cash:80000,skill:2},'작은 돈이지만 처음으로 내 자산이 생겼습니다.'],['친구들과 먹고 놀며 쓴다',{cash:20000,happy:5,relation:4},'돈은 사라졌지만 그날의 기억은 남았습니다.'],['원하는 것을 사기 위해 오래 모은다',{cash:120000,happy:2},'기다림 끝에 얻는 기쁨을 배웠습니다.']]},
+ {age:15,title:n=>`${n}, 마음이 복잡해지다`,text:'친구, 성적, 외모, 미래가 모두 중요해 보이기 시작합니다.',quote:'사춘기는 답을 찾는 시기라기보다 질문이 갑자기 많아지는 시기다.',choices:[['공부에 몰두한다',{skill:7,stress:4},'불안한 마음을 성취로 정리하려 했습니다.'],['친구들과 추억을 많이 만든다',{relation:7,happy:6,skill:-2},'성적표에는 남지 않지만 오래 기억될 장면들이 생겼습니다.'],['혼자 생각하고 취미를 깊게 파고든다',{skill:5,happy:3},'혼자 있는 시간 속에서 자기 취향이 또렷해졌습니다.'],['좋아하는 사람에게 마음을 전한다',{happy:6,relation:4,stress:2},'결과와 별개로 마음을 말해본 기억이 남았습니다.']]},
+ {age:18,title:n=>`${n}, 이제 스스로 인생의 방향을 고를 때`,text:'법적으로도, 사회적으로도 성인이라는 말이 가까워집니다. 이제 선택의 결과가 더 직접적으로 돌아오기 시작합니다.',quote:'어른이 된다는 것은 정답을 아는 것이 아니라 선택의 책임을 받아들이는 일에 가깝다.',career:true,choices:[]}
+];
+function applyDelta(d){
+ if(d.happy)game.happy=clamp(game.happy+d.happy);if(d.health)game.health=clamp(game.health+d.health);if(d.skill)game.skill=clamp(game.skill+d.skill*(game.legacy==='study'?1.15:1));if(d.relation)game.relation=clamp(game.relation+d.relation*(game.legacy==='social2'?1.2:1));if(d.stress)game.stress=clamp(game.stress+d.stress);if(d.reputation)game.reputation=clamp(game.reputation+d.reputation);if(d.cash)game.cash+=d.cash;
+}
+function renderChildhood(){
+ const st=childhood.find(x=>x.age===game.age);if(!st){game.age=18;return renderCareerChoice()};renderAll();$('progress').style.width=`${Math.min(20,game.age/18*20)}%`;
+ if(st.career)return renderCareerChoice();
+ $('scene').innerHTML=`<div class="kicker">${st.age}세 · 어린 시절</div><h2>${st.title(game.name)}</h2><div class="story">${st.text}</div><div class="quote">${st.quote}</div><div class="event-list">${st.choices.map((c,i)=>`<button class="event-choice" data-i="${i}"><b>${c[0]}</b><span>이 시기의 선택은 성격과 관계의 바탕이 됩니다.</span></button>`).join('')}</div>`;
+ $('scene').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{const c=st.choices[Number(b.dataset.i)];applyDelta(c[1]);if(st.friend&&!person('친구')){const f=addPerson(pick(npcNames),'친구',62,'어린 시절 친구');unlock('firstFriend');addLog(game.age,'첫 친구',`${f.name}과(와) 친구가 되었습니다.`)}addLog(game.age,st.title(game.name),c[0]);recordStats();renderAll();$('scene').innerHTML=`<div class="kicker">${game.age}세 · 기억</div><h2>시간은 조금 더 앞으로 흘렀다.</h2><div class="quote">${c[2]}</div><div class="actions"><button class="primary" id="nextChild">다음 시기로</button></div>`;$('nextChild').onclick=()=>{const idx=childhood.findIndex(x=>x.age===game.age);game.age=childhood[Math.min(idx+1,childhood.length-1)].age;renderChildhood()}})
+}
+function renderCareerChoice(){
+ game.age=18;renderAll();$('progress').style.width='20%';
+ const paths=[['student','대학에 진학한다','기본 연소득 0원. 아르바이트에 시간을 쓴 해에만 소득이 생깁니다.'],['jobseeker','취업을 준비한다','기본 연소득 0원. 아르바이트와 취업 준비를 병행할 수 있습니다.'],['office','고졸 취업으로 회사에 들어간다','즉시 정규직 소득이 생깁니다. 초봉 약 2,800만원에서 시작합니다.'],['tech','기술직으로 바로 취업한다','기술을 익혀 초봉 약 3,200만원 수준에서 시작합니다.'],['public','공무원 시험을 준비한다','합격 전 기본 연소득은 0원이며, 아르바이트 소득만 발생합니다.'],['creator','창작 활동을 시작한다','고정 연봉은 없습니다. 실제 작업 수익만 연소득으로 기록됩니다.'],['business','아주 작은 사업을 시작한다','고정 연봉은 없습니다. 실제 사업 수익이 생겨야 연소득이 올라갑니다.']];
+ $('scene').innerHTML=`<div class="kicker">18세 · 첫 진로</div><h2>${game.name}, 이제 무엇으로 시간을 바꿀까요?</h2><div class="story">직업을 고른다고 모두 바로 돈을 버는 것은 아닙니다.
+학생·취준·시험 준비는 기본 연소득 0원이며, 아르바이트를 선택한 해에만 소득이 생깁니다.</div><div class="event-list">${paths.map(p=>`<button class="event-choice" data-c="${p[0]}"><b>${p[1]}</b><span>${p[2]}</span></button>`).join('')}</div>`;
+ $('scene').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{const c=b.dataset.c;game.career=c;game.careerRank=['office','tech'].includes(c)?1:0;game.salary=['office','tech'].includes(c)?careerData[c].salary:0;game.annualIncome=game.salary;if(game.salary>0)unlock('firstJob');addLog(18,'첫 진로',paths.find(x=>x[0]===c)[1]);recordStats();game.age=19;prepareYear();renderYear()})
+}
+function timeTotal(){return Object.values(game.time).reduce((a,b)=>a+b,0)}
+function rollYearPoints(){let p=6+Math.floor(Math.random()*5);if(game.health>=82&&chance(.35))p+=1;if(game.health<45&&chance(.55))p-=1;if(game.stress>=75&&chance(.65))p-=1;if(game.age>=70&&chance(.45))p-=1;if(game.legacy==='fortune2'&&chance(.45))p+=1;return clamp(p,5,11)}
+function prepareYear(){game.yearPoints=rollYearPoints();game.time={work:0,study:0,health:0,people:0,rest:0}}
+function timePointNote(){if(game.yearPoints>=10)return '몸과 마음에 여유가 있어 평소보다 많은 시간을 활용할 수 있는 해입니다.';if(game.yearPoints<=6)return '컨디션과 상황이 좋지 않아 올해 활용할 수 있는 시간이 적습니다.';return '올해의 여유와 컨디션에 따라 사용할 수 있는 시간이 정해졌습니다.'}
+function autoBalance(){const keys=['work','study','health','people','rest'];game.time={work:0,study:0,health:0,people:0,rest:0};let left=game.yearPoints,i=0;while(left>0){const k=keys[i%keys.length];if(game.time[k]<5){game.time[k]++;left--}i++}renderYear()}
+function renderYear(){
+ if(!game.alive)return;if(!game.yearPoints)prepareYear();renderAll();$('progress').style.width=`${20+Math.min(79,(game.age-18)/82*79)}%`;const labels={work:'일',study:'배움',health:'건강',people:'사람',rest:'휴식'},remain=game.yearPoints-timeTotal();
+ $('scene').innerHTML=`<div class="kicker">${game.age}세 · 올해의 시간</div><h2>${game.name}, 올해는 ${game.yearPoints}포인트가 주어졌습니다.</h2><div class="story">매년 똑같은 시간이 주어지지는 않습니다. 건강, 스트레스, 나이와 약간의 운에 따라 <b>5~11포인트</b> 사이에서 달라집니다.
+${timePointNote()}</div><div class="alloc">${Object.keys(game.time).map(k=>`<div class="alloc-row"><label>${labels[k]}</label><div class="alloc-dots">${Array.from({length:5},(_,i)=>`<span class="dot ${i<game.time[k]?'on':''}">${i+1}</span>`).join('')}</div><div class="stepper"><button data-k="${k}" data-d="-1">−</button><button data-k="${k}" data-d="1">＋</button></div></div>`).join('')}</div><div class="remaining">남은 시간: <b>${remain}</b> / ${game.yearPoints}</div><div class="finance-box"><h3>올해의 돈 운용</h3><div class="finance-grid">${[['save','저축 중심'],['invest','투자 중심'],['spend','현재를 즐김']].map(x=>`<button class="finance-btn ${game.financePlan===x[0]?'on':''}" data-fin="${x[0]}">${x[1]}</button>`).join('')}</div></div><div class="quote">“같은 나이라도 어떤 해는 여유롭고, 어떤 해는 버티는 것만으로도 벅차다.”</div><div class="actions"><button class="secondary" id="autoBalance">균형 자동배분</button><button class="ghost" id="resetTime">배분 초기화</button><button class="primary" id="liveYear" ${remain!==0?'disabled':''}>${game.age}세를 살아간다</button></div>`;
+ $('scene').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k,d=Number(b.dataset.d),n=game.time[k]+d;if(n<0||n>5||d>0&&timeTotal()>=game.yearPoints)return;game.time[k]=n;renderYear()});$('scene').querySelectorAll('[data-fin]').forEach(b=>b.onclick=()=>{game.financePlan=b.dataset.fin;renderYear()});$('autoBalance').onclick=autoBalance;$('resetTime').onclick=()=>{game.time={work:0,study:0,health:0,people:0,rest:0};renderYear()};$('liveYear').onclick=liveOneYear;
+}
+function applyIncomeAndLife(){
+ const t=game.time;let income=0;
+ if(['office','tech'].includes(game.career)){income=game.salary}
+ else if(game.career==='student'){income=t.work*3200000}
+ else if(game.career==='jobseeker'){income=t.work*3000000}
+ else if(game.career==='public'&&game.salary===0){income=t.work*3000000;const pass=.055+game.skill/650+t.study*.028;if(chance(pass)){game.salary=careerData.public.salary;game.careerRank=1;game.annualIncome=game.salary;unlock('firstJob');addLog(game.age,'합격','공무원 시험에 합격했습니다.')}}
+ else if(game.career==='public'){income=game.salary}
+ else if(game.career==='creator'){income=Math.max(0,(t.work*900000)+(game.skill*45000)+(game.reputation*70000)+(Math.random()*7500000-2500000))}
+ else if(game.career==='business'){const gross=(t.work*1500000)+(game.skill*70000)+(game.reputation*90000)+(Math.random()*12000000-5000000);income=Math.max(-4000000,gross)}
+ else if(game.career==='retired'||game.career==='none'){income=0}
+ game.annualIncome=Math.max(0,Math.round(income));
+ let expense=game.age<20?1800000:game.age<23?6500000:game.age<30?12000000:18000000;if(person('배우자'))expense+=4200000;if(game.childCount)expense+=game.childCount*5000000;if(game.career==='student')expense+=3500000;
+ game.cash+=income-expense;
+ if(game.financePlan==='invest'&&game.cash>3000000){const move=Math.min(game.cash*.16,7000000);game.cash-=move;game.invest+=move}
+ if(game.financePlan==='save'&&game.cash>0)game.happy=clamp(game.happy-.3);
+ if(game.financePlan==='spend'){const fun=Math.min(Math.max(game.cash,0)*.055,2200000);game.cash-=fun;game.happy=clamp(game.happy+2.2);game.relation=clamp(game.relation+1)}
+ if(game.invest>0){const r=Math.random()*.20-.06+(game.legacy==='money'?.02:0)+(game.skill-50)*.0004;game.invest*=1+r}
+ if(game.home>0)game.home*=1+(Math.random()*.07-.012);if(game.debt>0){game.cash-=game.debt*.04;game.debt*=.982}
+ const pointScale=8/Math.max(5,game.yearPoints);game.skill=clamp(game.skill+t.study*(game.legacy==='study'?1.45:1.18)*pointScale+(t.work>=4?.4:0));game.health=clamp(game.health+t.health*1.3*pointScale-t.work*.43-(t.rest===0?2.5:0));game.relation=clamp(game.relation+t.people*1.0*pointScale-t.work*.34);game.happy=clamp(game.happy+t.rest*.9*pointScale+t.people*.55*pointScale-t.work*.25-Math.max(0,game.stress-70)*.034);game.stress=clamp(game.stress+t.work*1.05+t.study*.18-t.rest*(game.legacy==='fortune2'?2.6:2.05)-t.health*.5);
+ const parent=person('부모님');if(parent)parent.score=clamp(parent.score+t.people*.58-.28);game.people.filter(p=>p.role==='친구'&&p.active).forEach(p=>p.score=clamp(p.score+t.people*.38-.38));const partner=person('연인')||person('배우자');if(partner)partner.score=clamp(partner.score+t.people*.85-t.work*.50-(t.rest===0?1:0));
+ if(t.work>=3&&game.salary>0&&['office','tech','public'].includes(game.career)&&chance(.12+game.skill/680)){game.careerRank=Math.min(6,game.careerRank+1);game.salary*=1.095;game.reputation=clamp(game.reputation+3);addLog(game.age,'승진',`${careerName()}로 한 단계 올라섰습니다.`);if(game.careerRank>=6)unlock('executive')}else if(game.salary>0&&['office','tech','public'].includes(game.career))game.salary*=1.02;
+ game.risk=clamp(game.risk+t.work*.3+(t.rest===0?1.0:0)+(game.stress>75?1.0:0)-t.health*.36-(game.legacy==='health2'?.35:0),0,100);
+ if(game.age>45)game.health=clamp(game.health-(game.age-45)*.028);if(game.age>70)game.health=clamp(game.health-.8);
+ if(netWorth()<0)game.bankruptEver=true;if(game.bankruptEver&&netWorth()>30000000)unlock('bankrupt');
+}
+function growRelationships(){
+ if(game.age===19&&!person('친구')&&chance(.8)){const f=addPerson(pick(npcNames),'친구',60,'성인이 된 뒤 만난 친구');unlock('firstFriend');addLog(game.age,'새로운 친구',`${f.name}을(를) 알게 되었습니다.`)}
+ if(!person('연인')&&!person('배우자')&&game.age>=20&&game.age<=48&&game.time.people>=2&&chance(.075+game.time.people*.025)){const p=addPerson(pick(partnerNames.filter(n=>!game.people.some(x=>x.name===n))),'연인',60+Math.random()*12,'연애 중');game.partnerStartAge=game.age;addLog(game.age,'새로운 인연',`${p.name}과(와) 연애를 시작했습니다.`)}
+ const lover=person('연인');if(lover&&lover.score>73&&game.age>=25&&chance(.10)){lover.role='배우자';lover.status='결혼';game.cash-=Math.max(0,Math.min(game.cash,10000000));game.happy=clamp(game.happy+7);unlock('marriage');addLog(game.age,'결혼',`${lover.name}과(와) 함께 살기로 했습니다.`)}
+ const spouse=person('배우자');if(spouse&&game.childCount<2&&game.age>=27&&game.age<=45&&spouse.score>58&&chance(.075)){game.childCount++;addPerson(game.childCount===1?'첫째 아이':'둘째 아이','자녀',72,'가족');game.happy=clamp(game.happy+5);unlock('parent');addLog(game.age,'아이',`가족에 ${game.childCount===1?'첫째':'둘째'} 아이가 찾아왔습니다.`)}
+ const rel=person('연인');if(rel&&rel.score<25&&chance(.2)){rel.active=false;rel.status='헤어진 연인';rel.role='옛 연인';game.happy=clamp(game.happy-8);addLog(game.age,'이별',`${rel.name}과(와)의 관계가 끝났습니다.`)}
+ if(spouse&&spouse.score<18&&chance(.12)){spouse.active=false;spouse.status='이혼';spouse.role='옛 배우자';game.happy=clamp(game.happy-10);game.relation=clamp(game.relation-5);addLog(game.age,'이별',`${spouse.name}과(와) 각자의 길을 선택했습니다.`)}
+ if(spouse&&game.partnerStartAge!==null&&game.age-game.partnerStartAge>=30&&spouse.score>=85)unlock('trueLove');
+}
+const events=[
+ {min:19,max:35,title:'친구가 여행을 제안했다.',text:'비용은 부담되지만 오래 기억될 여행이 될 것 같습니다.',choices:[['같이 간다',{cash:-1200000,happy:6,relation:5,risk:-1},'돈은 줄었지만 몇 장의 사진이 오래 남았습니다.'],['이번에는 돈을 아낀다',{cash:400000,happy:-1},'통장에는 돈이 남았고 달력에는 빈칸이 남았습니다.']]},
+ {min:22,max:48,title:'좋은 회사에서 이직 제안이 왔다.',text:'연봉은 20% 높지만 업무 강도도 높습니다.',choices:[['옮긴다',{salaryMult:1.2,stress:6,reputation:4,risk:2},'더 좋은 명함과 더 빽빽한 일정표를 함께 받았습니다.'],['남는다',{happy:3,stress:-2},'기회를 놓쳤을지 모르지만 지금의 리듬을 지켰습니다.']]},
+ {min:24,max:60,title:'주식시장이 크게 흔들린다.',text:'투자자산이 있다면 공포가 더 크게 느껴집니다.',choices:[['공포에 매도한다',{investMult:.84,stress:-2},'손실은 확정됐지만 불안은 줄었습니다.'],['그대로 버틴다',{stress:3,flag:'marketHold'},'화면을 닫고 시간을 믿어보기로 했습니다.'],['현금이 있다면 추가 매수한다',{cash:-3000000,invest:3000000,skill:2,flag:'marketBuy'},'확신인지 용기인지 몇 년 뒤에야 알 수 있을 선택이었습니다.']]},
+ {min:28,max:52,title:'집을 살 수 있는 기회가 왔다.',text:'대출을 크게 받으면 작은 집 한 채를 마련할 수 있습니다.',choices:[['대출을 받아 집을 산다',{cash:-15000000,debt:180000000,home:260000000,stress:5},'통장에는 빚이 생겼고 주소에는 내 이름의 집이 생겼습니다.'],['아직 기다린다',{happy:1},'기회를 놓친 것인지 위험을 피한 것인지는 아직 모릅니다.']]},
+ {min:30,max:65,title:'부모님이 병원에 입원하셨다.',text:'며칠간 곁에 있어줄 사람이 필요합니다.',choices:[['휴가를 내고 곁에 있는다',{cash:-800000,relation:8,reputation:-1,risk:-1},'일정은 엉켰지만 그 시간은 오래 후회되지 않았습니다.'],['비용을 부담하고 간병인을 구한다',{cash:-2500000,relation:2},'현실적인 선택이었지만 마음 한쪽에 작은 무게가 남았습니다.'],['다른 가족에게 부탁한다',{relation:-6},'일은 지켰지만 관계에는 작은 틈이 생겼습니다.']]},
+ {min:32,max:62,title:'검진 결과에 경고가 찍혔다.',text:'아직 늦지 않았지만 생활을 바꾸라고 합니다.',choices:[['생활을 바꾼다',{health:8,stress:-5,risk:-7},'몸은 느리지만 정직하게 회복했습니다.'],['약만 먹고 버틴다',{health:-2,risk:3},'숫자는 잠시 나아졌지만 습관은 그대로 남았습니다.'],['무시하고 일한다',{cash:1800000,health:-7,stress:6,risk:9},'일은 끝났고 몸은 그 시간을 기억했습니다.']]},
+ {min:35,max:58,title:'회사에 구조조정 소문이 돈다.',text:'내 이름도 안전하지 않다는 이야기가 들립니다.',career:['office','tech'],choices:[['미리 이직을 준비한다',{skill:3,stress:4},'불안은 있었지만 준비는 선택지를 늘렸습니다.'],['버티며 상황을 본다',{stress:2,flag:'layoffRisk'},'아무 일도 없을 수도 있고, 예상보다 빨리 끝날 수도 있습니다.']]},
+ {min:38,max:68,title:'오래된 친구에게 밤늦게 전화가 왔다.',text:'목소리가 평소와 다릅니다.',choices:[['당장 만나러 간다',{relation:8,happy:4,stress:-3,risk:-1},'문제를 해결하지는 못했지만 혼자 두지는 않았습니다.'],['내일 이야기하자고 한다',{relation:-5},'내일은 늘 있을 것처럼 느껴집니다.']]},
+ {min:45,max:75,title:'뜻밖의 유산이 생겼다.',text:'큰돈은 아니지만 인생의 속도를 조금 바꿀 수 있는 금액입니다.',choices:[['노후자금으로 남긴다',{cash:28000000},'갑자기 생긴 돈일수록 더 천천히 쓰게 되었습니다.'],['가족과 나눈다',{cash:15000000,relation:8,happy:5},'나눈 돈보다 그날의 대화가 더 오래 남았습니다.']]},
+ {min:55,max:82,title:'후배가 인생 조언을 구한다.',text:'당신의 성공뿐 아니라 실패도 궁금하다고 합니다.',choices:[['실패까지 솔직히 이야기한다',{reputation:5,relation:4,happy:4,flag:'mentor'},'경험은 자랑할 때보다 솔직히 건넬 때 더 가치가 있었습니다.'],['성공한 이야기만 들려준다',{reputation:3},'후배는 감탄했지만 당신은 중요한 부분을 하나 빼놓았다는 걸 알았습니다.']]},
+ {min:18,max:80,title:'무리한 밤샘을 해야 할 일이 생겼다.',text:'오늘만 버티면 큰 일을 끝낼 수 있습니다.',choices:[['밤을 새워 끝낸다',{skill:2,reputation:2,health:-3,stress:5,risk:4},'성과는 남았고 몸은 작은 빚을 떠안았습니다.'],['내일로 미룬다',{stress:-2,reputation:-1,risk:-1},'일은 늦었지만 몸은 조금 더 오래 버틸 수 있었습니다.']]},
+ {min:20,max:70,title:'빠른 길과 안전한 길 사이',text:'시간을 아끼려면 조금 위험을 감수해야 합니다.',choices:[['위험을 감수한다',{happy:1,risk:5},'별일 없이 지나갔지만 위험을 선택하는 습관은 기록됩니다.'],['안전한 길을 택한다',{stress:-1,risk:-2},'몇 분 늦었지만 아무 일도 일어나지 않았습니다.']]},
+ {min:19,max:29,title:'처음으로 독립을 고민하다.',text:'집을 나오면 자유로워지지만 생활비는 훨씬 커집니다.',choices:[['작은 방을 구해 독립한다',{cash:-2500000,happy:4,stress:2,skill:2},'좁은 방이었지만 처음으로 내 생활의 리듬이 생겼습니다.'],['조금 더 가족과 함께 산다',{cash:1200000,relation:2},'독립은 미뤘지만 돈과 가족의 시간을 조금 더 남겼습니다.']]},
+ {min:20,max:38,title:'친구들이 모임에 나오라고 한다.',text:'내일 일정은 빡빡하지만 오랜만에 모두가 모이는 날입니다.',choices:[['나간다',{happy:5,relation:5,stress:-2,cash:-120000},'별 의미 없던 대화가 몇 년 뒤에는 좋은 기억이 되었습니다.'],['집에서 쉬거나 공부한다',{health:2,skill:2,relation:-1},'몸은 편해졌고 연락방은 조금 조용해졌습니다.']]},
+ {min:22,max:45,title:'새로운 기술을 배울 기회가 왔다.',text:'돈과 주말 몇 번을 써야 하지만 앞으로 도움이 될지도 모릅니다.',choices:[['배운다',{cash:-900000,skill:6,stress:2},'배운 것은 바로 돈이 되지 않았지만 선택지를 늘려주었습니다.'],['지금 하던 일에 집중한다',{reputation:2,happy:1},'깊이를 택했고 넓이는 다음으로 미뤘습니다.']]},
+ {min:25,max:55,title:'오래 미뤄둔 취미가 떠오르다.',text:'돈도 시간도 생산성도 크게 남지 않는 일이지만 이상하게 다시 해보고 싶습니다.',choices:[['다시 시작한다',{happy:7,stress:-5,cash:-500000},'쓸모 없는 시간이 오히려 당신을 다시 쓸 수 있게 만들었습니다.'],['다음에 하기로 한다',{skill:1,stress:1},'다음은 또 다음으로 미뤄졌습니다.']]},
+ {min:30,max:65,title:'가족 모임 날짜가 중요한 일정과 겹쳤다.',text:'누구도 강요하지 않지만 어느 쪽을 선택해도 하나는 놓치게 됩니다.',choices:[['가족 모임에 간다',{relation:7,happy:3,reputation:-1},'사진 속 빈자리를 만들지 않았습니다.'],['일정을 지킨다',{reputation:4,relation:-4,cash:500000},'성과는 남았고 자리는 비었습니다.']]},
+ {min:35,max:70,title:'친구와 돈 문제로 어색해졌다.',text:'빌려달라는 부탁을 받았지만 관계와 돈을 섞는 것이 불안합니다.',choices:[['감당할 수 있는 만큼만 돕는다',{cash:-1000000,relation:4},'큰돈은 아니었지만 선을 지키면서도 외면하지 않았습니다.'],['정중하게 거절한다',{relation:-2,stress:-1},'관계는 조금 어색해졌지만 원칙은 지켰습니다.']]},
+ {min:40,max:75,title:'부모님의 전화가 잦아졌다.',text:'별일 없는 이야기지만 통화가 조금씩 길어집니다.',choices:[['통화 시간을 충분히 낸다',{relation:6,happy:3,stress:-1},'별 내용 없던 통화들이 나중에는 가장 그리운 목소리가 되기도 합니다.'],['바쁘다고 짧게 끊는다',{reputation:1,relation:-4},'급한 일은 처리됐지만 시간은 그대로 흘렀습니다.']]},
+ {min:45,max:72,title:'예전에 포기했던 꿈이 다시 생각나다.',text:'지금 시작하기에는 늦은 것 같지만 완전히 늦었다고 말할 사람도 없습니다.',choices:[['작게라도 다시 해본다',{happy:8,skill:3,cash:-1000000},'늦게 시작한 일에는 조급함 대신 진심이 남았습니다.'],['추억으로 남긴다',{happy:1,stress:-1},'아쉬움은 남았지만 지금 가진 것을 지키기로 했습니다.']]},
+ {min:50,max:80,title:'건강보다 일이 익숙해진 나이',text:'몸은 쉬라고 말하지만 오랫동안 일로 자신을 설명해왔습니다.',choices:[['일의 속도를 줄인다',{health:6,happy:4,reputation:-2,stress:-6,risk:-4},'덜 바쁜 사람이 되는 일이 생각보다 큰 용기가 필요했습니다.'],['예전처럼 계속 밀어붙인다',{reputation:4,cash:1200000,health:-5,stress:5,risk:6},'익숙한 속도를 지켰지만 몸은 예전의 몸이 아니었습니다.']]},
+ {min:60,max:88,title:'남은 시간을 계산해보게 된다.',text:'앞으로 몇 번의 봄을 더 볼 수 있을지 문득 생각합니다.',choices:[['하고 싶은 일의 목록을 만든다',{happy:6,stress:-3},'목록을 만들자 남은 시간이 줄어든 것이 아니라 선명해졌습니다.'],['생각하지 않기로 한다',{happy:2},'모르는 채 살아가는 것도 삶을 견디는 한 방식이었습니다.']]},
+ {min:70,max:100,title:'오래된 사진을 정리하다.',text:'사진 속에는 지금은 만나기 어려운 사람들과 젊은 당신이 있습니다.',choices:[['한 장씩 오래 바라본다',{happy:4,relation:4,stress:-3},'기억은 과거가 아니라 현재의 마음을 바꾸는 일이기도 했습니다.'],['정리하고 현재에 집중한다',{happy:3,skill:1},'당신은 추억을 버린 것이 아니라 제자리에 두었습니다.']]},
+ {min:80,max:115,title:'병원에서 삶에 대해 묻다.',text:'의사는 치료 계획을 설명하며 무엇을 가장 중요하게 생각하는지 묻습니다.',choices:[['수명보다 생활의 질을 우선한다',{happy:5,stress:-5,risk:1},'더 오래보다 더 나답게를 선택했습니다.'],['가능한 치료를 모두 해본다',{health:3,stress:5,cash:-2500000,risk:-1},'힘든 과정이었지만 시간을 조금 더 붙잡아보기로 했습니다.']]}
+];
+const milestoneEvents=[
+ {age:23,career:'student',flag:'graduation23',title:'졸업 후 첫 진로를 선택하다.',text:'학생이라는 이름을 내려놓을 시간이 왔습니다. 무엇을 시작할까요?',choices:[['일반 회사에 지원한다',{career:'office',salary:28000000,reputation:1},'첫 직장이 생겼고 이제 연봉이 실제 생활을 바꾸기 시작했습니다.'],['기술 직무에 도전한다',{career:'tech',salary:32000000,skill:2},'배운 것을 직업으로 바꾸기 시작했습니다.'],['취업 준비를 더 한다',{career:'jobseeker',salary:0,skill:2,stress:3},'소득은 아직 없지만 조금 더 원하는 방향을 준비하기로 했습니다.']]},
+ {age:30,flag:'thirty',title:'서른, 기대했던 어른의 모습과 마주하다.',text:'어릴 때 상상했던 서른과 지금의 나는 꽤 다릅니다.',choices:[['지금까지의 삶을 인정한다',{happy:5,stress:-3},'모자란 부분보다 여기까지 온 자신을 먼저 보았습니다.'],['더 빠르게 달리기로 한다',{skill:3,reputation:3,stress:5,risk:2},'불안은 다시 속도가 되었습니다.']]},
+ {age:40,flag:'forty',title:'마흔, 시간이 체감되기 시작하다.',text:'앞으로 남은 시간보다 지나온 시간이 처음으로 크게 느껴집니다.',choices:[['생활의 우선순위를 다시 정한다',{happy:5,health:4,stress:-4},'무엇을 덜 할지 정하면서 무엇이 중요한지 더 선명해졌습니다.'],['지금의 흐름을 유지한다',{reputation:2,cash:500000},'익숙한 삶은 안정적이었고 시간도 익숙하게 흘렀습니다.']]},
+ {age:60,flag:'sixty',title:'은퇴라는 단어가 현실이 되다.',text:'계속 일할 수도 있고, 일을 줄이거나 완전히 멈출 수도 있습니다.',choices:[['은퇴한다',{career:'retired',salary:0,happy:6,stress:-8},'직함이 사라지자 처음엔 허전했고 곧 하루가 넓어졌습니다.'],['조금 더 일한다',{reputation:4,cash:1500000,health:-2,stress:3},'필요한 사람이라는 감각을 조금 더 붙잡았습니다.']]},
+ {age:70,flag:'seventy',title:'일흔, 남기고 싶은 것을 생각하다.',text:'재산, 경험, 관계 중 무엇을 다음 사람에게 더 남기고 싶은지 생각합니다.',choices:[['사람에게 시간을 남긴다',{relation:7,happy:5},'당신이 남긴 가장 큰 유산은 함께 보낸 시간이 되었습니다.'],['경험과 기록을 남긴다',{reputation:6,skill:2},'당신이 배운 것들이 다음 사람의 시행착오를 조금 줄였습니다.'],['재산을 더 정리한다',{cash:1000000,stress:-3},'숫자를 정리하자 마음의 짐도 조금 가벼워졌습니다.']]}
+];
+function milestoneEvent(){const e=milestoneEvents.find(x=>x.age===game.age&&(!x.career||x.career===game.career)&&!game.flags.includes(x.flag));if(e){game.flags.push(e.flag);return e}return null}
+function eventPool(){const recent=game.recentEvents||[];let pool=events.filter(e=>game.age>=e.min&&game.age<=e.max&&(!e.career||e.career.includes(game.career))&&!recent.includes(e.title));if(!pool.length)pool=events.filter(e=>game.age>=e.min&&game.age<=e.max&&(!e.career||e.career.includes(game.career)));return pool}
+function maybeEvent(){const special=milestoneEvent();if(special){renderEvent(special);return true}const pool=eventPool();if(!pool.length)return false;const e=pick(pool);game.recentEvents=game.recentEvents||[];game.recentEvents.push(e.title);if(game.recentEvents.length>5)game.recentEvents.shift();renderEvent(e);return true}
+function renderEvent(e){
+ renderAll();const warn=game.legacy==='future'&&e.choices.some(c=>(c[1].risk||0)>4)?'<div class="notice">🔮 설명하기 어려운 불안감이 듭니다. 이번 선택은 몸과 수명에 오래 남을지도 모릅니다.</div>':'';
+ $('scene').innerHTML=`<div class="kicker">${game.age}세 · 뜻밖의 사건</div><h2>${e.title}</h2><div class="story">${e.text}</div>${warn}<div class="event-list">${e.choices.map((c,i)=>`<button class="event-choice" data-i="${i}"><b>${c[0]}</b><span>결과는 지금 또는 훗날 나타날 수 있습니다.</span></button>`).join('')}</div>`;
+ $('scene').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>applyEvent(e,Number(b.dataset.i)))
+}
+function applyEvent(e,i){const c=e.choices[i],d=c[1];applyDelta(d);if(d.salaryMult)game.salary*=d.salaryMult;if(d.salary!==undefined){game.salary=d.salary;game.annualIncome=d.salary}if(d.career){game.career=d.career;game.careerRank=['office','tech','public'].includes(d.career)?1:0;if(d.salary>0)unlock('firstJob')}if(d.investMult)game.invest*=d.investMult;if(d.invest)game.invest+=d.invest;if(d.debt)game.debt+=d.debt;if(d.home)game.home+=d.home;if(d.risk)game.risk=clamp(game.risk+d.risk);if(d.flag&&!game.flags.includes(d.flag))game.flags.push(d.flag);addLog(game.age,e.title,c[0]);recordStats();renderAll();$('scene').innerHTML=`<div class="kicker">${game.age}세 · 선택 이후</div><h2>그 선택은 삶 어딘가에 남았다.</h2><div class="quote">${c[2]}</div><div class="story">올해의 시간 배분이 끝나도 삶은 숫자만으로 흘러가지 않습니다. 사람, 일, 건강, 우연한 사건이 매년 다른 장면을 만듭니다.</div><div class="actions"><button class="primary" id="continueYear">다음 해로</button></div>`;$('continueYear').onclick=finishYear}
+function resolveFlags(){if(game.flags.includes('marketHold')&&chance(.16)){game.invest*=1.16;addLog(game.age,'시장 회복','버텼던 자산이 일부 회복되었습니다.');game.flags=game.flags.filter(x=>x!=='marketHold')}if(game.flags.includes('marketBuy')&&chance(.18)){game.invest*=1.24;addLog(game.age,'반등','공포 속 추가매수가 수익으로 돌아왔습니다.');game.flags=game.flags.filter(x=>x!=='marketBuy')}if(game.flags.includes('layoffRisk')&&chance(.08)){game.salary=0;game.career='jobseeker';game.careerRank=0;game.stress=clamp(game.stress+9);addLog(game.age,'실직','예상했던 구조조정이 현실이 되었습니다.');game.flags=game.flags.filter(x=>x!=='layoffRisk')}if(game.flags.includes('mentor'))unlock('mentor')}
+function recoverJob(){if(game.career==='jobseeker'&&chance(.16+game.skill/450+game.time.study*.025)){game.career=game.skill>62?'tech':'office';game.salary=careerData[game.career].salary;game.annualIncome=game.salary;game.careerRank=1;unlock('firstJob');addLog(game.age,'재취업',`${careerData[game.career].name}으로 다시 일을 시작했습니다.`)}}
+function liveOneYear(){applyIncomeAndLife();growRelationships();recoverJob();resolveFlags();checkAchievements();recordStats();renderAll();if(checkDeath())return;if(maybeEvent())return;finishYear()}
+function annualDeathProbability(){
+ const a=game.age,h=game.health,s=game.stress,r=game.risk;
+ let base=a<18?.00005:a<35?.00018:a<45?.00045:a<55?.0012:a<65?.003:a<75?.009:a<85?.025:a<95?.065:.16;
+ const healthMult=h>=80?.55:h>=65?.8:h>=50?1.1:h>=35?1.8:h>=20?3.2:6;
+ const stressMult=1+Math.max(0,s-55)/80;const riskMult=1+r/75;const legacy=game.legacy==='health2'?.72:1;
+ return Math.min(.72,base*healthMult*stressMult*riskMult*legacy)
+}
+function checkDeath(){
+ if(game.health<=0){game.deathReason='건강 악화';endLife();return true}
+ const p=annualDeathProbability();if(chance(p)){if(game.age<50&&game.risk>35)game.deathReason='예기치 못한 사고';else if(game.health<38)game.deathReason='오랜 건강 악화';else if(game.stress>82)game.deathReason='누적된 과로와 건강 악화';else game.deathReason=game.age>=85?'노화에 따른 자연스러운 죽음':'예기치 못한 질병';endLife();return true}return false
+}
+function finishYear(){game.age+=1;if(game.age>115){game.deathReason='아주 긴 삶의 끝';return endLife()}if(game.age>=60){const parent=person('부모님');if(parent&&chance(.025+(game.age-60)*.006)){parent.active=false;parent.status='세상을 떠남';addLog(game.age,'부모님과의 이별','부모님의 시간이 먼저 끝났습니다.');game.happy=clamp(game.happy-7)}}prepareYear();renderYear()}
+function checkAchievements(){const nw=netWorth();if(game.salary>0)unlock('firstJob');if(nw>=100000000)unlock('firstMillion');if(nw>=1000000000)unlock('tenBillion');if(game.careerRank>=6||(game.career==='business'&&game.careerRank>=5))unlock('executive');if(game.age>=70&&game.health>=80)unlock('healthyOld');if(game.reputation>=80&&game.relation<=35)unlock('workOnly');if(game.childCount>0)unlock('parent')}
+
+// 100 endings: 10 archetypes x 10 closing tones
+const archetypes=[
+ {id:'WEALTH',title:'금빛 탑',match:g=>netWorth()>=800000000,text:'당신은 돈을 다루는 법을 배웠고, 선택할 수 있는 자유를 크게 늘렸습니다.'},
+ {id:'LOVE',title:'곁에 남은 얼굴들',match:g=>g.relation>=82&&g.people.filter(p=>p.active).length>=4,text:'마지막에 가장 선명했던 것은 숫자가 아니라 사람들의 얼굴이었습니다.'},
+ {id:'FAMILY',title:'한 집의 시간',match:g=>g.childCount>0&&!!person('배우자'),text:'당신의 삶은 혼자만의 이야기가 아니라 여러 사람의 기억 속에 동시에 남았습니다.'},
+ {id:'CAREER',title:'이름을 남긴 사람',match:g=>g.reputation>=75||g.careerRank>=6,text:'오랜 시간 일에 쓴 힘은 실력과 이름으로 남았습니다.'},
+ {id:'HEALTH',title:'오래 걷는 법',match:g=>g.health>=78&&g.age>=75,text:'당신은 삶을 오래 누리기 위해 몸의 속도를 존중하는 법을 배웠습니다.'},
+ {id:'CREATOR',title:'만든 것들이 남다',match:g=>g.career==='creator'||g.reputation>=62,text:'당신이 만든 것과 표현한 것들이 당신보다 조금 더 오래 남았습니다.'},
+ {id:'COMEBACK',title:'다시 일어난 사람',match:g=>g.bankruptEver||g.career==='jobseeker',text:'무너졌던 순간이 있었지만 그 장면이 인생의 마지막 문장은 아니었습니다.'},
+ {id:'FREEDOM',title:'자기 속도로 산 사람',match:g=>g.happy>=76&&g.stress<=38,text:'당신은 남들이 정한 속도보다 자신이 견딜 수 있는 리듬을 더 중요하게 여겼습니다.'},
+ {id:'SOLITUDE',title:'조용한 방',match:g=>g.relation<=38||g.people.filter(p=>p.active).length<=1,text:'혼자 있는 시간은 평온하기도 했고, 때로는 너무 조용하기도 했습니다.'},
+ {id:'ORDINARY',title:'평범해서 소중한 날들',match:g=>true,text:'큰 전설은 아니었지만 수많은 평범한 하루가 모여 한 사람의 인생이 되었습니다.'}
+];
+const tones=[
+ {id:'CONTENT',title:'충분했던 삶',match:g=>g.happy>=82,text:'마지막 순간, 더 많이 가지지 못한 아쉬움보다 이미 충분히 살아냈다는 감각이 컸습니다.'},
+ {id:'REGRET',title:'남겨둔 문',match:g=>g.happy<45,text:'마지막에는 얻은 것보다 미뤄둔 것들이 더 또렷하게 떠올랐습니다.'},
+ {id:'PEOPLE',title:'마지막 손길',match:g=>g.relation>=75,text:'삶의 끝에서 한 사람의 손을 잡을 수 있다는 사실이 생각보다 컸습니다.'},
+ {id:'TIME',title:'시간의 값',match:g=>g.age<65,text:'시간이 많을 거라 생각했던 날들이 예상보다 빨리 끝났습니다.'},
+ {id:'LONG',title:'긴 오후',match:g=>g.age>=90,text:'아주 긴 시간을 살았지만, 지나고 나니 삶 전체는 한 번의 긴 오후처럼 느껴졌습니다.'},
+ {id:'BODY',title:'몸이 남긴 대답',match:g=>g.health<35,text:'몸은 늘 말하고 있었지만 이해하는 데에는 시간이 필요했습니다.'},
+ {id:'FREEDOM',title:'놓아버린 것들',match:g=>g.stress<35,text:'모든 것을 붙잡지 않아도 삶이 무너지지 않는다는 것을 뒤늦게 알았습니다.'},
+ {id:'DUTY',title:'책임의 무게',match:g=>g.stress>=70,text:'당신은 많은 책임을 감당했고, 그 무게는 성취와 피로를 함께 남겼습니다.'},
+ {id:'UNFINISHED',title:'아직 하고 싶은 말',match:g=>g.age<80,text:'끝이라고 생각하지 않았던 순간에 마지막 장이 찾아왔습니다.'},
+ {id:'ACCEPT',title:'그 선택들도 나였다',match:g=>true,text:'잘못 고른 길까지 지워버리면 지금의 자신도 사라진다는 사실을 받아들였습니다.'}
+];
+function chooseEnding(){let ai=archetypes.findIndex(a=>a.match(game));if(ai<0)ai=9;let ti=tones.findIndex(t=>t.match(game));if(ti<0)ti=9;const num=ai*10+ti+1;return{num,code:`E${String(num).padStart(3,'0')}`,a:archetypes[ai],t:tones[ti]}}
+function endLife(){
+ game.alive=false;if(game.age>=100)unlock('century');if(game.happy>=85)unlock('peaceful');checkAchievements();const ending=chooseEnding();if(!meta.endings.includes(ending.code))meta.endings.push(ending.code);if(meta.endings.length>=10)unlock('collector10');if(meta.endings.length>=50)unlock('collector50');if(meta.endings.length>=100)unlock('collector100');meta.runs+=1;const earned=Math.max(1,Math.min(6,Math.round((game.age/100)+(game.happy+game.relation+game.skill)/120)));meta.legacyPoints+=earned;saveMeta();renderAll();$('progress').style.width='100%';
+ $('scene').innerHTML=`<div class="kicker">FINAL RECORD · ${game.name}</div><h2>${game.age}세, ${game.name}의 삶이 끝났습니다.</h2><div class="ending-code">ENDING ${ending.code} · ${ending.a.title} / ${ending.t.title}</div><div class="big-number">${game.age}</div><div class="story">사망 원인: <b>${game.deathReason||'삶의 자연스러운 끝'}</b>\n\n태어날 때는 아무것도 없었습니다.\n이제 마지막에 남은 것들을 바라봅니다.</div><div class="result-grid"><div class="result-card"><span>최종 순자산</span><strong>${fmtMoney(netWorth())}</strong></div><div class="result-card"><span>직업</span><strong>${careerName()}</strong></div><div class="result-card"><span>행복</span><strong>${Math.round(game.happy)}</strong></div><div class="result-card"><span>건강</span><strong>${Math.round(game.health)}</strong></div><div class="result-card"><span>관계</span><strong>${Math.round(game.relation)}</strong></div><div class="result-card"><span>만난 사람</span><strong>${game.people.length}명</strong></div></div><div class="quote">${ending.a.text}<br><br>${ending.t.text}<br><br>“나는 내 시간을, 내가 중요하다고 믿는 것에 충분히 썼는가?”</div><div class="notice">이번 삶에서 전생 포인트 <b>+${earned}P</b> · 발견한 엔딩 <b>${meta.endings.length}/100</b></div><div class="collection">같은 인생 유형이라도 마지막 감정에 따라 다른 엔딩 번호가 기록됩니다.</div><div class="actions" style="margin-top:22px"><button class="primary" id="reincarnate">0세부터 다시 태어난다</button><button class="secondary" id="acceptLife">이 삶을 받아들인다</button></div>`;
+ $('reincarnate').onclick=()=>{game=null;tempName='';$('nameInput').value='';$('identity').textContent='아직 태어나지 않음';renderEmpty();show('nameModal');$('nameInput').focus()};$('acceptLife').onclick=renderAcceptance;
+}
+function renderAcceptance(){$('scene').innerHTML=`<div class="kicker">THE END</div><h2>${game.name}, 자신의 삶을 받아들이다.</h2><div class="story">태어날 때 아무것도 없었던 한 사람이\n사람을 만나고, 무언가를 얻고, 잃고, 결국 여기까지 왔습니다.\n\n후회가 있었다는 사실이 이 삶을 실패로 만들지는 않습니다.\n좋은 삶이란 실수가 없는 삶이 아니라, 끝내 자기 삶을 부정하지 않을 수 있는 삶일지도 모릅니다.</div><div class="quote">“다시 살고 싶은 삶보다, 지금의 삶을 사랑할 수 있는 사람이 되는 것.”</div><div class="actions"><button class="secondary" id="toTitle">처음으로</button></div>`;$('toTitle').onclick=()=>location.reload()}
+window.addEventListener('resize',()=>{if(game)renderStatChart()});renderProfile();renderEmpty();
+</script>
+</body>
+</html>
