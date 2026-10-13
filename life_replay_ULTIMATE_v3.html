@@ -25,11 +25,14 @@ button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!impo
 .overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(7,9,12,.92);backdrop-filter:blur(8px)}.panel{width:min(860px,100%);max-height:92vh;overflow:auto;border:1px solid #303946;border-radius:24px;background:linear-gradient(180deg,#161b23,#10141a);box-shadow:0 36px 110px rgba(0,0,0,.52)}.panel-inner{padding:clamp(28px,5vw,54px)}.hero{position:relative;min-height:min(840px,88vh);display:flex;align-items:center;text-align:center;overflow:hidden}.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,13,.25),rgba(8,10,13,.73)),radial-gradient(circle at 50% 16%,rgba(210,176,120,.18),transparent 18%),url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1100'><rect width='1600' height='1100' fill='%230b0e13'/><circle cx='1180' cy='200' r='150' fill='%23c6a66d' opacity='.18'/><g stroke='%23c6a66d' opacity='.12' fill='none'><circle cx='1180' cy='200' r='210'/><circle cx='1180' cy='200' r='280'/></g><path d='M620 1100 C690 890 755 740 800 650 C850 760 920 930 980 1100Z' fill='%23182029'/><g stroke='%23a98b5c' opacity='.38'><path d='M750 790L850 790'/><path d='M720 850L880 850'/><path d='M685 925L915 925'/><path d='M645 1010L955 1010'/></g></svg>") center/cover no-repeat}.hero .panel-inner{position:relative;z-index:1;margin:auto;max-width:740px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:.26em}.hero-copy{white-space:pre-line;line-height:1.95;color:#d7d0c5}.hero-quote{margin:22px auto 0;max-width:650px;color:#b6a78c;font:italic 19px/1.75 Georgia,serif}.input{width:100%;min-height:46px;border-radius:12px;border:1px solid #39434f;background:#0f141a;color:var(--text);padding:12px 14px;outline:none;font-size:16px}
 @media(max-width:980px){.main{grid-template-columns:1fr}.side{order:2}.hud{grid-template-columns:repeat(3,1fr)}.scene{min-height:580px}.profile-frame{max-width:420px;margin:auto}.profile-actions{max-width:420px;margin:7px auto 0}}
 @media(max-width:640px){.app{width:min(100%,calc(100% - 14px));padding-top:10px}.top{align-items:center}.brand h1{font-size:30px}.identity strong{font-size:15px}.hud{grid-template-columns:repeat(2,1fr)}.options.two{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,1fr)}.scene{padding:22px 18px;min-height:620px}.alloc-row{grid-template-columns:80px 1fr}.stepper{grid-column:2}.finance-grid{grid-template-columns:1fr}.hero{min-height:760px}}
+
+.account-area{display:flex;align-items:center;gap:10px;justify-content:flex-end;flex-wrap:wrap}.account-user{font-size:11px;color:var(--muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.account-btn{border:1px solid #36404c;background:#151b22;color:#c9c2b7;border-radius:9px;padding:7px 10px;font-size:11px}.auth-panel{width:min(460px,100%)}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:18px 0 14px}.auth-tab{min-height:42px;border:1px solid #37414d;border-radius:10px;background:#141a22;color:#9ca5b0}.auth-tab.on{border-color:#826b49;background:#211c16;color:#e6cfaa}.auth-fields{display:grid;gap:10px}.auth-label{font-size:11px;color:#9da6b1;margin-bottom:5px;display:block}.auth-error{min-height:20px;margin-top:10px;color:#d58d91;font-size:12px;line-height:1.5}.auth-divider{display:flex;align-items:center;gap:10px;color:#69727e;font-size:10px;margin:18px 0}.auth-divider:before,.auth-divider:after{content:"";height:1px;background:#2e3742;flex:1}.google-btn{width:100%;min-height:46px;border:1px solid #3a4450;border-radius:12px;background:#f4f1eb;color:#171717;font-weight:700}.guest-btn{width:100%;margin-top:8px;min-height:42px;border:0;background:transparent;color:#818b97}.firebase-hint{margin-top:14px;padding:10px 12px;border:1px solid #3a424d;border-radius:10px;background:#11171e;color:#8e98a4;font-size:11px;line-height:1.6}.resume-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}@media(max-width:640px){.top{align-items:flex-start}.account-area{max-width:180px}.account-user{max-width:145px}.resume-actions{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="top"><div class="brand"><small>LIFE REPLAY · ULTIMATE</small><h1>인생을 다시 산다면</h1></div><div class="identity"><span>이번 생</span><strong id="identity">아직 태어나지 않음</strong></div></div>
+  <div class="top"><div class="brand"><small>LIFE REPLAY · ULTIMATE</small><h1>인생을 다시 산다면</h1></div><div><div class="identity"><span>이번 생</span><strong id="identity">아직 태어나지 않음</strong></div><div class="account-area"><span class="account-user" id="accountUser">로그인 확인 중</span><button class="account-btn hidden" id="logoutBtn" type="button">로그아웃</button></div></div></div>
   <div class="hud" id="hud"></div>
   <div class="main">
     <main class="card"><div class="progress"><i id="progress"></i></div><section id="scene" class="scene"></section></main>
@@ -51,7 +54,57 @@ button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!impo
   </div>
 </div>
 
-<div class="overlay" id="intro"><div class="panel hero fade"><div class="panel-inner"><div class="eyebrow">PROLOGUE</div><h2>인생을 다시 산다면</h2><div class="hero-copy">당신은 한 번의 삶을 끝냈습니다.
+
+<div class="overlay" id="authOverlay">
+  <div class="panel auth-panel fade">
+    <div class="panel-inner">
+      <div class="eyebrow">ACCOUNT</div>
+      <h2>당신의 인생을 저장하세요.</h2>
+      <div class="story">로그인하면 전생 포인트, 업적, 발견한 엔딩과 현재 진행 중인 인생을 Firebase에 저장할 수 있습니다.</div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab on" id="loginTab" type="button">로그인</button>
+        <button class="auth-tab" id="signupTab" type="button">회원가입</button>
+      </div>
+
+      <div class="auth-fields">
+        <div>
+          <label class="auth-label" for="authEmail">이메일</label>
+          <input class="input" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div>
+          <label class="auth-label" for="authPassword">비밀번호</label>
+          <input class="input" id="authPassword" type="password" autocomplete="current-password" placeholder="6자 이상">
+        </div>
+      </div>
+
+      <div class="auth-error" id="authError"></div>
+      <button class="primary" id="emailAuthBtn" type="button" style="width:100%">로그인</button>
+
+      <div class="auth-divider">또는</div>
+      <button class="google-btn" id="googleAuthBtn" type="button">Google로 계속하기</button>
+      <button class="guest-btn" id="guestBtn" type="button">로그인 없이 게스트로 플레이</button>
+
+      <div class="firebase-hint" id="firebaseHint">Firebase 설정을 확인하는 중입니다.</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="resumeModal">
+  <div class="panel auth-panel fade">
+    <div class="panel-inner">
+      <div class="eyebrow">CLOUD SAVE</div>
+      <h2>저장된 인생이 있습니다.</h2>
+      <div class="story" id="resumeText">이 계정에서 진행하던 인생을 찾았습니다.</div>
+      <div class="resume-actions">
+        <button class="primary" id="resumeGameBtn" type="button">이어하기</button>
+        <button class="secondary" id="newGameBtn" type="button">새 인생 시작</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="intro"><div class="panel hero fade"><div class="panel-inner"><div class="eyebrow">PROLOGUE</div><h2>인생을 다시 산다면</h2><div class="hero-copy">당신은 한 번의 삶을 끝냈습니다.
 
 이번에는 태어나는 순간부터 다시 시작합니다.
 처음에는 가진 돈도, 직업도, 집도 없습니다.
@@ -82,7 +135,7 @@ const npcNames=['민수','지훈','지아','하늘','유진','도윤','수아','
 const partnerNames=['서연','지아','수아','유진','하린','예진','도현','민재','은채','지우'];
 const careerData={none:{name:'없음',salary:0},student:{name:'학생',salary:0},jobseeker:{name:'취업 준비',salary:0},office:{name:'회사원',salary:28000000},tech:{name:'개발자',salary:32000000},public:{name:'공무원',salary:30000000},creator:{name:'창작자',salary:0},business:{name:'사업가',salary:0},retired:{name:'은퇴',salary:0}};
 const ranks=['','사원','대리','과장','차장','부장','임원'];
-function saveMeta(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(meta))}catch(e){}}
+function saveMeta(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(meta))}catch(e){};if(window.cloudSaveMeta)window.cloudSaveMeta(meta)}
 function unlock(id){if(!meta.achievements.includes(id)){meta.achievements.push(id);saveMeta()}}
 function fmtMoney(n){n=Math.round(n||0);if(Math.abs(n)>=100000000)return (n/100000000).toFixed(Math.abs(n)%100000000===0?0:1)+'억';if(Math.abs(n)>=10000)return Math.round(n/10000).toLocaleString()+'만';return n.toLocaleString()+'원'}
 function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
@@ -97,7 +150,7 @@ function renderEmpty(){
  $('people').innerHTML='';$('badges').innerHTML='';$('lifeLog').innerHTML='';const chart=$('statsChart');if(chart){const ctx=chart.getContext('2d');ctx.clearRect(0,0,chart.width,chart.height)}const legend=$('chartLegend');if(legend)legend.innerHTML='';
  $('scene').innerHTML=`<div class="kicker">WAITING FOR A LIFE</div><h2>아직 시작되지 않은 인생입니다.</h2><div class="story">이번에는 0세부터 시작합니다.\n처음에는 가진 것도, 만난 사람도 거의 없습니다.</div>`;
 }
-function renderAll(){if(!game){renderEmpty();return}renderHud();renderMeta();renderPeople();renderBadges();renderLog();renderStatChart()}
+function renderAll(){if(!game){renderEmpty();return}renderHud();renderMeta();renderPeople();renderBadges();renderLog();renderStatChart();if(window.cloudScheduleGameSave)window.cloudScheduleGameSave(game)}
 function renderHud(){$('hud').innerHTML=statDefs.map(([k,l])=>`<div class="hud-card"><span>${l}</span><strong>${Math.round(game[k])}</strong><div class="mini"><i style="width:${clamp(game[k])}%"></i></div></div>`).join('')}
 function renderMeta(){$('metaGrid').innerHTML=[['나이',game.age+'세'],['직업',careerName()],['연소득',fmtMoney(game.annualIncome||0)],['순자산',fmtMoney(netWorth())],['현금',fmtMoney(game.cash)],['투자',fmtMoney(game.invest)],['주택',fmtMoney(game.home)],['부채',fmtMoney(game.debt)]].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}
 const chartSeries=[['happy','행복','#d9b36c'],['health','건강','#75a987'],['skill','능력','#7f91c3'],['relation','관계','#b686ad'],['stress','스트레스','#b76b6b'],['reputation','명성','#9c9388']];
@@ -113,8 +166,8 @@ function renderLog(){$('lifeLog').innerHTML=game?game.log.slice().reverse().slic
 // profile image
 function renderProfile(){if(meta.profileImage){$('profileImg').src=meta.profileImage;$('profileImg').classList.remove('hidden');$('profilePlaceholder').classList.add('hidden')}else{$('profileImg').classList.add('hidden');$('profilePlaceholder').classList.remove('hidden')}}
 function openProfilePicker(){$('profileInput').click()}
-$('profileFrame').addEventListener('click',openProfilePicker);$('profileFrame').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProfilePicker()}});$('changeImage').onclick=openProfilePicker;$('removeImage').onclick=()=>{meta.profileImage='';saveMeta();renderProfile()};
-$('profileInput').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/'))return;const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=512;c.width=s;c.height=s;const ctx=c.getContext('2d');const scale=Math.max(s/im.width,s/im.height),w=im.width*scale,h=im.height*scale;ctx.drawImage(im,(s-w)/2,(s-h)/2,w,h);meta.profileImage=c.toDataURL('image/jpeg',.84);saveMeta();renderProfile()};im.src=rd.result};rd.readAsDataURL(f);e.target.value=''})
+$('profileFrame').addEventListener('click',openProfilePicker);$('profileFrame').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProfilePicker()}});$('changeImage').onclick=openProfilePicker;$('removeImage').onclick=()=>{meta.profileImage='';saveMeta();if(window.cloudSaveProfileImage)window.cloudSaveProfileImage('');renderProfile()};
+$('profileInput').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/'))return;const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=512;c.width=s;c.height=s;const ctx=c.getContext('2d');const scale=Math.max(s/im.width,s/im.height),w=im.width*scale,h=im.height*scale;ctx.drawImage(im,(s-w)/2,(s-h)/2,w,h);meta.profileImage=c.toDataURL('image/jpeg',.84);saveMeta();if(window.cloudSaveProfileImage)window.cloudSaveProfileImage(meta.profileImage);renderProfile()};im.src=rd.result};rd.readAsDataURL(f);e.target.value=''})
 
 $('begin').onclick=()=>{hide('intro');show('nameModal');$('nameInput').focus()};
 $('nameNext').onclick=()=>{const n=$('nameInput').value.trim();if(!n){$('nameInput').focus();return}tempName=n;hide('nameModal');openLegacy()};$('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('nameNext').click()});
@@ -298,7 +351,291 @@ function endLife(){
  $('reincarnate').onclick=()=>{game=null;tempName='';$('nameInput').value='';$('identity').textContent='아직 태어나지 않음';renderEmpty();show('nameModal');$('nameInput').focus()};$('acceptLife').onclick=renderAcceptance;
 }
 function renderAcceptance(){$('scene').innerHTML=`<div class="kicker">THE END</div><h2>${game.name}, 자신의 삶을 받아들이다.</h2><div class="story">태어날 때 아무것도 없었던 한 사람이\n사람을 만나고, 무언가를 얻고, 잃고, 결국 여기까지 왔습니다.\n\n후회가 있었다는 사실이 이 삶을 실패로 만들지는 않습니다.\n좋은 삶이란 실수가 없는 삶이 아니라, 끝내 자기 삶을 부정하지 않을 수 있는 삶일지도 모릅니다.</div><div class="quote">“다시 살고 싶은 삶보다, 지금의 삶을 사랑할 수 있는 사람이 되는 것.”</div><div class="actions"><button class="secondary" id="toTitle">처음으로</button></div>`;$('toTitle').onclick=()=>location.reload()}
+
+// Firebase bridge hooks (Firebase module below calls these)
+window.__loadedCloudGame=null;
+window.applyCloudData=function(payload){
+  payload=payload||{};
+  const localProfile=meta.profileImage||'';
+  const cloudMeta=payload.meta||{};
+  meta={
+    legacyPoints:Number(cloudMeta.legacyPoints||0),
+    runs:Number(cloudMeta.runs||0),
+    achievements:Array.isArray(cloudMeta.achievements)?cloudMeta.achievements:[],
+    endings:Array.isArray(cloudMeta.endings)?cloudMeta.endings:[],
+    profileImage:typeof payload.profileImage==='string'&&payload.profileImage?payload.profileImage:localProfile
+  };
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(meta))}catch(e){}
+  window.__loadedCloudGame=payload.game||null;
+  renderProfile();renderBadges();
+};
+window.finishFirebaseLogin=function(user,hasSave){
+  $('accountUser').textContent=user?(user.email||user.displayName||'로그인됨'):'게스트';
+  $('logoutBtn').classList.toggle('hidden',!user);
+  hide('authOverlay');
+  if(hasSave&&window.__loadedCloudGame&&window.__loadedCloudGame.alive){
+    const g=window.__loadedCloudGame;
+    $('resumeText').textContent=`${g.name||'이름 없는 삶'} · ${g.age||0}세에서 저장된 인생이 있습니다.`;
+    show('resumeModal');
+  }else{
+    show('intro');
+  }
+};
+window.resumeCloudGame=function(){
+  if(!window.__loadedCloudGame)return;
+  game=window.__loadedCloudGame;
+  tempName=game.name||'';
+  $('identity').textContent=game.name||'이름 없는 삶';
+  hide('resumeModal');hide('intro');renderAll();
+  if(game.age<18)renderChildhood();else{if(!game.yearPoints)prepareYear();renderYear()}
+};
+window.startFreshFromCloud=function(){
+  game=null;window.__loadedCloudGame=null;hide('resumeModal');show('intro');renderEmpty();$('identity').textContent='아직 태어나지 않음';
+  if(window.cloudDeleteGame)window.cloudDeleteGame();
+};
+window.enterGuestMode=function(){
+  $('accountUser').textContent='게스트';
+  $('logoutBtn').classList.add('hidden');
+  hide('authOverlay');show('intro');
+};
+$('resumeGameBtn').onclick=window.resumeCloudGame;
+$('newGameBtn').onclick=window.startFreshFromCloud;
+
 window.addEventListener('resize',()=>{if(game)renderStatChart()});renderProfile();renderEmpty();
 </script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  deleteDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+/*
+  1) Firebase Console > 프로젝트 설정 > 내 앱 > 웹 앱에서
+     아래 firebaseConfig 값을 그대로 복사해 넣으세요.
+  2) Authentication > Sign-in method 에서
+     Email/Password와 Google을 활성화하세요.
+  3) Firestore Database를 생성하세요.
+*/
+const firebaseConfig = {
+  apiKey: "AIzaSyC7PWtbFcDUqIFs1R0Hlnl9Scq09y0B3Ng",
+  authDomain: "re-life-88a71.firebaseapp.com",
+  projectId: "re-life-88a71",
+  storageBucket: "re-life-88a71.firebasestorage.app",
+  messagingSenderId: "1039682241189",
+  appId: "1:1039682241189:web:3a72595f93e6227f35434c",
+  measurementId: "G-26KVGBLYS0"
+};
+
+const required = ["apiKey","authDomain","projectId","appId"];
+const configured = required.every(k => firebaseConfig[k] && !firebaseConfig[k].startsWith("PASTE_"));
+
+const authError = document.getElementById("authError");
+const hint = document.getElementById("firebaseHint");
+const emailInput = document.getElementById("authEmail");
+const passwordInput = document.getElementById("authPassword");
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+const emailBtn = document.getElementById("emailAuthBtn");
+const googleBtn = document.getElementById("googleAuthBtn");
+const guestBtn = document.getElementById("guestBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+let mode = "login";
+let auth = null;
+let db = null;
+let currentUser = null;
+let saveTimer = null;
+
+function setMode(next){
+  mode = next;
+  loginTab.classList.toggle("on", next === "login");
+  signupTab.classList.toggle("on", next === "signup");
+  emailBtn.textContent = next === "login" ? "로그인" : "회원가입";
+  passwordInput.autocomplete = next === "login" ? "current-password" : "new-password";
+  authError.textContent = "";
+}
+loginTab.addEventListener("click",()=>setMode("login"));
+signupTab.addEventListener("click",()=>setMode("signup"));
+guestBtn.addEventListener("click",()=>window.enterGuestMode());
+
+function friendlyError(err){
+  const code = err?.code || "";
+  const map = {
+    "auth/invalid-credential":"이메일 또는 비밀번호가 올바르지 않습니다.",
+    "auth/email-already-in-use":"이미 사용 중인 이메일입니다.",
+    "auth/weak-password":"비밀번호는 최소 6자 이상으로 설정해주세요.",
+    "auth/invalid-email":"이메일 형식을 확인해주세요.",
+    "auth/popup-closed-by-user":"Google 로그인 창이 닫혔습니다.",
+    "auth/popup-blocked":"브라우저에서 팝업이 차단되었습니다."
+  };
+  return map[code] || `로그인 오류: ${code || err?.message || "알 수 없는 오류"}`;
+}
+
+if(!configured){
+  hint.innerHTML = "<b>Firebase 설정 필요</b><br>HTML 하단의 <code>firebaseConfig</code>에 Firebase 콘솔의 웹 앱 설정값을 붙여 넣으세요. 설정 전에는 게스트 플레이만 가능합니다.";
+  emailBtn.disabled = true;
+  googleBtn.disabled = true;
+  document.getElementById("accountUser").textContent = "Firebase 미설정";
+}else{
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  await setPersistence(auth, browserLocalPersistence);
+  hint.textContent = "Firebase 연결 준비 완료. 로그인하면 계정별로 진행상황이 저장됩니다.";
+
+  emailBtn.addEventListener("click",async()=>{
+    authError.textContent = "";
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    if(!email || !password){
+      authError.textContent = "이메일과 비밀번호를 입력해주세요.";
+      return;
+    }
+    try{
+      if(mode === "signup"){
+        await createUserWithEmailAndPassword(auth,email,password);
+      }else{
+        await signInWithEmailAndPassword(auth,email,password);
+      }
+    }catch(err){
+      authError.textContent = friendlyError(err);
+    }
+  });
+
+  googleBtn.addEventListener("click",async()=>{
+    authError.textContent = "";
+    try{
+      await signInWithPopup(auth,new GoogleAuthProvider());
+    }catch(err){
+      authError.textContent = friendlyError(err);
+    }
+  });
+
+  logoutBtn.addEventListener("click",async()=>{
+    await signOut(auth);
+    location.reload();
+  });
+
+  async function loadCloud(user){
+    const userRef = doc(db,"users",user.uid);
+    const saveRef = doc(db,"users",user.uid,"saves","current");
+    const [userSnap,saveSnap] = await Promise.all([getDoc(userRef),getDoc(saveRef)]);
+
+    if(!userSnap.exists()){
+      await setDoc(userRef,{
+        email:user.email || "",
+        displayName:user.displayName || "",
+        createdAt:serverTimestamp(),
+        updatedAt:serverTimestamp(),
+        meta:{legacyPoints:0,runs:0,achievements:[],endings:[]},
+        profileImage:""
+      });
+    }
+
+    const userData = userSnap.exists() ? userSnap.data() : {};
+    const gameData = saveSnap.exists() ? saveSnap.data().game : null;
+    window.applyCloudData({
+      meta:userData.meta || null,
+      profileImage:userData.profileImage || "",
+      game:gameData
+    });
+    window.finishFirebaseLogin(user,!!(gameData && gameData.alive));
+  }
+
+  onAuthStateChanged(auth,async(user)=>{
+    currentUser = user || null;
+    if(!user){
+      document.getElementById("accountUser").textContent = "로그인 필요";
+      document.getElementById("logoutBtn").classList.add("hidden");
+      document.getElementById("authOverlay").classList.remove("hidden");
+      return;
+    }
+    try{
+      hint.textContent = "계정 데이터를 불러오는 중입니다.";
+      await loadCloud(user);
+    }catch(err){
+      authError.textContent = "계정 데이터 로딩 실패: " + (err?.message || "알 수 없는 오류");
+      window.finishFirebaseLogin(user,false);
+    }
+  });
+
+  window.cloudSaveMeta = async(meta)=>{
+    if(!currentUser || !db) return;
+    const safeMeta = {
+      legacyPoints:Number(meta?.legacyPoints || 0),
+      runs:Number(meta?.runs || 0),
+      achievements:Array.isArray(meta?.achievements)?meta.achievements:[],
+      endings:Array.isArray(meta?.endings)?meta.endings:[]
+    };
+    try{
+      await setDoc(doc(db,"users",currentUser.uid),{
+        email:currentUser.email || "",
+        displayName:currentUser.displayName || "",
+        meta:safeMeta,
+        updatedAt:serverTimestamp()
+      },{merge:true});
+    }catch(err){
+      console.warn("Cloud meta save failed",err);
+    }
+  };
+
+  window.cloudSaveProfileImage = async(dataUrl)=>{
+    if(!currentUser || !db) return;
+    // 간단한 프로토타입용. 운영 서비스에서는 Cloud Storage 사용 권장.
+    try{
+      await setDoc(doc(db,"users",currentUser.uid),{
+        profileImage:typeof dataUrl==="string"?dataUrl:"",
+        updatedAt:serverTimestamp()
+      },{merge:true});
+    }catch(err){
+      console.warn("Profile image save failed",err);
+    }
+  };
+
+  window.cloudScheduleGameSave = gameState=>{
+    if(!currentUser || !db || !gameState) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(async()=>{
+      try{
+        const cleanGame = JSON.parse(JSON.stringify(gameState));
+        await setDoc(doc(db,"users",currentUser.uid,"saves","current"),{
+          game:cleanGame,
+          version:3,
+          updatedAt:serverTimestamp()
+        },{merge:true});
+      }catch(err){
+        console.warn("Cloud game save failed",err);
+      }
+    },1200);
+  };
+
+  window.cloudDeleteGame = async()=>{
+    if(!currentUser || !db) return;
+    try{
+      await deleteDoc(doc(db,"users",currentUser.uid,"saves","current"));
+    }catch(err){
+      console.warn("Cloud game delete failed",err);
+    }
+  };
+}
+</script>
+
 </body>
 </html>
