@@ -1194,7 +1194,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   <section class="cine-final">
     <div class="cine-inner"><div class="cine-copy">
       <div class="cine-number">05 · REPLAY</div>
-      <h2>그렇다면, <br>이번에는 <br> 어떻게 살겠습니까?</h2>
+      <h2>그렇다면, <br>이번에는 <br>어떻게 살겠습니까?</h2>
       <p>이제 0세부터 다시 시작합니다.
 당신이 고른 선택은 삶의 기록에 남고,
 마지막 문장은 그 기록을 따라 달라집니다.</p>
@@ -1401,7 +1401,14 @@ $('startLife').onclick=()=>{hide('birthModal');startGame()};
 function startGame(){
  const b=window.birthPreset;
  game={name:tempName,legacy:pendingLegacy,age:0,cash:0,invest:0,debt:0,home:0,salary:0,annualIncome:0,career:'none',careerRank:0,happy:62+(b.trait.happy||0),health:82+(b.trait.health||0),skill:20+(b.trait.skill||0),relation:55+(b.trait.relation||0),stress:5+(b.trait.stress||0),reputation:b.trait.reputation||0,parents:b.home.parent,people:[],log:[],flags:[],time:{work:0,study:0,health:0,people:0,rest:0},yearPoints:0,financePlan:'save',risk:0,alive:true,bankruptEver:false,partnerStartAge:null,deathReason:'',childCount:0,statHistory:[],recentEvents:[]};
- addPerson('부모님','부모님',b.home.parent);unlock('born');addLog(0,'탄생',`${game.name}의 삶이 시작되었습니다.`);$('identity').textContent=game.name;recordStats();renderAll();renderChildhood();
+ addPerson('부모님','부모님',b.home.parent);unlock('born');addLog(0,'탄생',`${game.name}의 삶이 시작되었습니다.`);$('identity').textContent=game.name;recordStats();
+ // 기존 삶에서 '새 인생 시작'을 선택한 경우에만 이 순간 클라우드 세이브를 새 0세 인생으로 교체한다.
+ if(window.__startingFreshLife){
+   window.__startingFreshLife=false;
+   window.__loadedCloudGame=null;
+   if(window.cloudBeginFreshGame)window.cloudBeginFreshGame(game);
+ }
+ renderAll();renderChildhood();
 }
 const childhood=[
  {age:0,title:n=>`${n}, 첫 번째 하루`,text:'세상은 너무 밝고 낯섭니다. 아직 할 수 있는 것은 울고, 잠들고, 누군가의 품을 느끼는 것뿐입니다.',quote:'기억나지 않는 시간도 사람을 만든다.',choices:[['부모의 품에서 잠든다',{happy:2,relation:3},'당신이 기억하지 못하는 안정감이 마음의 바닥에 쌓였습니다.'],['세상을 향해 크게 운다',{health:1,reputation:1},'첫 목소리는 작았지만 삶은 분명히 시작되었습니다.'],['낯선 소리에 귀를 기울인다',{skill:1,happy:1},'말보다 먼저 세상의 리듬을 익히기 시작했습니다.']]},
@@ -1721,6 +1728,7 @@ function renderAcceptance(){$('scene').innerHTML=`<div class="kicker">THE END</d
 window.__hasCloudSave=false;
 window.__firebaseUser=null;
 window.__pendingStartAfterAuth=false;
+window.__startingFreshLife=false;
 
 window.openAuthModal=function(mode='login',forStart=false){
   window.__pendingStartAfterAuth=!!forStart;
@@ -1805,17 +1813,14 @@ window.finishFirebaseLogin=function(user,hasSave){
   }
 };
 window.resumeCloudGame=function(){if(!window.__loadedCloudGame)return;game=window.__loadedCloudGame;tempName=game.name||'';$('identity').textContent=game.name||'이름 없는 삶';hide('resumeModal');hide('intro');hide('landingPage');$('gameApp').classList.remove('hidden');renderAll();if(game.age<18)renderChildhood();else{if(!game.yearPoints)prepareYear();renderYear()}};
-window.startFreshFromCloud=async function(){
-  // 가장 먼저 기존 세이브 선택창을 닫는다. (이전에는 이 팝업이 뒤에 계속 남아 있었다.)
+window.startFreshFromCloud=function(){
+  // 새 인생 준비 단계에서는 기존 클라우드 세이브를 삭제하지 않는다.
+  // 이름/기억 선택 도중 화면을 닫아도 기존 인생은 그대로 보존된다.
   hide('resumeModal');
-  window.__loadedCloudGame=null;
+  window.__startingFreshLife=true;
   window.__hasCloudSave=false;
   $('landingResumeBtn').classList.add('hidden');
   game=null;
-
-  // 기존 인생 삭제 + 예약된 이전 자동저장이 완전히 취소될 때까지 기다린다.
-  if(window.cloudDeleteGame) await window.cloudDeleteGame();
-
   window.startNewLifeFromLanding(false);
 };
 window.enterGuestMode=function(){window.__firebaseUser=null;$('accountUser').textContent='게스트';$('logoutBtn').classList.add('hidden');hide('authOverlay');window.startNewLifeFromLanding()};
@@ -1884,8 +1889,46 @@ let auth = null;
 let db = null;
 let currentUser = null;
 let saveTimer = null;
+let pendingGameSnapshot = null;
+let saveChain = Promise.resolve();
 // 세이브 세대 번호. 새 인생으로 전환할 때 증가시켜 이전 인생의 지연 저장을 무효화한다.
 let saveEpoch = 0;
+const SESSION_SAVE_PREFIX = 'lifeReplaySessionSave:';
+
+function cloneGameState(state){
+  return state ? JSON.parse(JSON.stringify(state)) : null;
+}
+function progressScore(state){
+  if(!state || !state.alive) return -1;
+  const age = Number(state.age || 0);
+  const logs = Array.isArray(state.log) ? state.log.length : 0;
+  const hist = Array.isArray(state.statHistory) ? state.statHistory.length : 0;
+  return age * 100000 + logs * 100 + hist;
+}
+function writeSessionBackup(uid,state){
+  if(!uid || !state) return;
+  try{sessionStorage.setItem(SESSION_SAVE_PREFIX+uid,JSON.stringify(state))}catch(e){}
+}
+function readSessionBackup(uid){
+  try{
+    const raw=sessionStorage.getItem(SESSION_SAVE_PREFIX+uid);
+    return raw?JSON.parse(raw):null;
+  }catch(e){return null}
+}
+function enqueueGameWrite(uid,snapshot,epoch=saveEpoch){
+  if(!uid || !db || !snapshot) return Promise.resolve();
+  const data=cloneGameState(snapshot);
+  // 모든 쓰기를 하나의 Promise 체인에 넣어 요청 완료 순서가 뒤집히지 않게 한다.
+  saveChain=saveChain.catch(()=>{}).then(async()=>{
+    if(epoch!==saveEpoch) return;
+    await setDoc(doc(db,'users',uid,'saves','current'),{
+      game:data,
+      version:5,
+      updatedAt:serverTimestamp()
+    },{merge:true});
+  });
+  return saveChain;
+}
 
 function setMode(next){
   mode = next;
@@ -1954,13 +1997,16 @@ if(!configured){
   });
 
   async function doLogout(){
-    saveEpoch += 1;
-    if(saveTimer){clearTimeout(saveTimer);saveTimer=null;}
+    // 로그아웃 버튼을 누른 바로 그 순간의 게임 상태를 먼저 확정 저장한다.
+    if(currentUser && window.cloudFlushGameSave){
+      try{await window.cloudFlushGameSave()}catch(err){console.warn('Final save before logout failed',err)}
+    }
     await signOut(auth);
     window.__firebaseUser=null;
     window.__loadedCloudGame=null;
     window.__hasCloudSave=false;
     window.__pendingStartAfterAuth=false;
+    window.__startingFreshLife=false;
     window.showLanding();
   }
   logoutBtn.addEventListener("click",doLogout);
@@ -1983,7 +2029,13 @@ if(!configured){
     }
 
     const userData = userSnap.exists() ? userSnap.data() : {};
-    const gameData = saveSnap.exists() ? saveSnap.data().game : null;
+    const cloudGame = saveSnap.exists() ? saveSnap.data().game : null;
+    const sessionGame = readSessionBackup(user.uid);
+    // 같은 탭에서 로그아웃 직전 저장해 둔 상태가 더 앞선 진행이면 그것을 우선한다.
+    const gameData = progressScore(sessionGame) > progressScore(cloudGame) ? sessionGame : cloudGame;
+    if(gameData && gameData === sessionGame && progressScore(sessionGame) > progressScore(cloudGame)){
+      try{await enqueueGameWrite(user.uid,sessionGame,saveEpoch)}catch(err){console.warn('Cloud repair from session backup failed',err)}
+    }
     window.applyCloudData({
       meta:userData.meta || null,
       profileImage:userData.profileImage || "",
@@ -2050,40 +2102,65 @@ if(!configured){
 
   window.cloudScheduleGameSave = gameState=>{
     if(!currentUser || !db || !gameState) return;
+    pendingGameSnapshot=cloneGameState(gameState);
+    writeSessionBackup(currentUser.uid,pendingGameSnapshot);
     clearTimeout(saveTimer);
-    const scheduledEpoch = saveEpoch;
-    // 호출 당시의 게임 상태를 즉시 복제해 이후 객체 변경과도 분리한다.
-    const cleanGame = JSON.parse(JSON.stringify(gameState));
-    saveTimer = setTimeout(async()=>{
-      // 새 인생이 시작되었다면 과거 인생에서 예약된 저장은 폐기한다.
-      if(scheduledEpoch !== saveEpoch) return;
-      try{
-        await setDoc(doc(db,"users",currentUser.uid,"saves","current"),{
-          game:cleanGame,
-          version:4,
-          updatedAt:serverTimestamp()
-        },{merge:true});
-      }catch(err){
-        console.warn("Cloud game save failed",err);
-      }
-    },1200);
+    const scheduledEpoch=saveEpoch;
+    const uid=currentUser.uid;
+    saveTimer=setTimeout(()=>{
+      saveTimer=null;
+      if(scheduledEpoch!==saveEpoch || !pendingGameSnapshot) return;
+      const snapshot=cloneGameState(pendingGameSnapshot);
+      enqueueGameWrite(uid,snapshot,scheduledEpoch).catch(err=>console.warn('Cloud game save failed',err));
+    },700);
+  };
+
+  window.cloudFlushGameSave = async()=>{
+    if(!currentUser || !db) return;
+    if(saveTimer){clearTimeout(saveTimer);saveTimer=null;}
+    // 화면의 현재 game이 가장 최신이다. 없으면 마지막 pending snapshot을 사용한다.
+    const snapshot=cloneGameState((typeof game!=='undefined' && game && game.alive)?game:pendingGameSnapshot);
+    if(!snapshot) return;
+    pendingGameSnapshot=snapshot;
+    writeSessionBackup(currentUser.uid,snapshot);
+    await enqueueGameWrite(currentUser.uid,snapshot,saveEpoch);
+  };
+
+  window.cloudBeginFreshGame = async newGameState=>{
+    if(!currentUser || !db || !newGameState) return;
+    // 새 인생이 실제로 시작되는 순간 저장 세대를 바꾼다.
+    saveEpoch+=1;
+    if(saveTimer){clearTimeout(saveTimer);saveTimer=null;}
+    pendingGameSnapshot=cloneGameState(newGameState);
+    writeSessionBackup(currentUser.uid,pendingGameSnapshot);
+    // 기존 queued write가 먼저 끝난 다음 반드시 새 인생이 마지막에 기록된다.
+    await enqueueGameWrite(currentUser.uid,pendingGameSnapshot,saveEpoch);
   };
 
   window.cloudDeleteGame = async()=>{
-    // 이전 인생에서 대기 중이던 자동저장을 먼저 완전히 폐기한다.
-    saveEpoch += 1;
-    if(saveTimer){
-      clearTimeout(saveTimer);
-      saveTimer = null;
-    }
+    saveEpoch+=1;
+    if(saveTimer){clearTimeout(saveTimer);saveTimer=null;}
+    pendingGameSnapshot=null;
     if(!currentUser || !db) return;
     try{
-      await deleteDoc(doc(db,"users",currentUser.uid,"saves","current"));
-    }catch(err){
-      console.warn("Cloud game delete failed",err);
-      // 삭제 실패 시에도 과거 timer를 다시 살리지는 않는다.
-    }
+      await saveChain.catch(()=>{});
+      await deleteDoc(doc(db,'users',currentUser.uid,'saves','current'));
+      try{sessionStorage.removeItem(SESSION_SAVE_PREFIX+currentUser.uid)}catch(e){}
+    }catch(err){console.warn('Cloud game delete failed',err)}
   };
+
+
+  // 탭이 백그라운드로 가거나 페이지가 닫힐 때도 최신 상태를 최대한 보존한다.
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='hidden' && currentUser && typeof game!=='undefined' && game && game.alive){
+      window.cloudFlushGameSave?.().catch(()=>{});
+    }
+  });
+  window.addEventListener('pagehide',()=>{
+    if(currentUser && typeof game!=='undefined' && game && game.alive){
+      window.cloudFlushGameSave?.().catch(()=>{});
+    }
+  });
 }
 </script>
 
