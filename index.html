@@ -1194,7 +1194,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   <section class="cine-final">
     <div class="cine-inner"><div class="cine-copy">
       <div class="cine-number">05 · REPLAY</div>
-      <h2>그렇다면, <br>이번에는 어떻게 살겠습니까?</h2>
+      <h2>그렇다면, <br>이번에는 <br> 어떻게 살겠습니까?</h2>
       <p>이제 0세부터 다시 시작합니다.
 당신이 고른 선택은 삶의 기록에 남고,
 마지막 문장은 그 기록을 따라 달라집니다.</p>
@@ -1202,19 +1202,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
         <button class="cine-start" id="landingStartBtn" type="button">0세부터 다시 살아보기</button>
         <button class="cine-resume hidden" id="landingResumeBtn" type="button">저장된 인생 이어하기</button>
       </div>
-      <div class="cine-foot">로그인하거나 회원가입하면 전생 포인트·업적·엔딩·현재 인생이 계정에 안전하게 저장됩니다.<br>
-      LIFE REPLAY<br>
-      인생을 다시 산다면<br>
-<br>
-“모든 선택은 지나가지만, 어떤 선택은 오래 남는다.”<br>
-<br>
-이용약관 · 개인정보처리방침 · 문의<br>
-<br>
-Original Theme<br>
-다시 그 길을 걸을 수 있다면<br>
-<br>
-© 2026 LIFE REPLAY. All rights reserved.
-      </div>
+      <div class="cine-foot">로그인하거나 회원가입하면 전생 포인트·업적·엔딩·현재 인생이 계정에 안전하게 저장됩니다.</div>
     </div></div>
   </section>
 </div>
@@ -1747,6 +1735,12 @@ window.showLanding=function(){
   hide('intro');hide('nameModal');hide('legacyModal');hide('birthModal');hide('resumeModal');hide('authOverlay');
 };
 window.startNewLifeFromLanding=function(){
+  // 새 게임에 들어갈 때 이전 흐름의 overlay가 뒤에 남지 않도록 모두 정리한다.
+  hide('resumeModal');
+  hide('intro');
+  hide('legacyModal');
+  hide('birthModal');
+  hide('authOverlay');
   $('landingPage').classList.add('hidden');
   $('gameApp').classList.remove('hidden');
   game=null;tempName='';$('nameInput').value='';$('identity').textContent='아직 태어나지 않음';renderEmpty();
@@ -1754,7 +1748,10 @@ window.startNewLifeFromLanding=function(){
 };
 window.requestStartLife=function(){
   if(window.__firebaseUser){
-    if(window.__hasCloudSave){show('resumeModal');return;}
+    if(window.__hasCloudSave){
+      hide('nameModal');hide('legacyModal');hide('birthModal');
+      show('resumeModal');return;
+    }
     window.startNewLifeFromLanding();
   }else{
     window.openAuthModal('login',true);
@@ -1808,7 +1805,19 @@ window.finishFirebaseLogin=function(user,hasSave){
   }
 };
 window.resumeCloudGame=function(){if(!window.__loadedCloudGame)return;game=window.__loadedCloudGame;tempName=game.name||'';$('identity').textContent=game.name||'이름 없는 삶';hide('resumeModal');hide('intro');hide('landingPage');$('gameApp').classList.remove('hidden');renderAll();if(game.age<18)renderChildhood();else{if(!game.yearPoints)prepareYear();renderYear()}};
-window.startFreshFromCloud=function(){game=null;window.__loadedCloudGame=null;window.__hasCloudSave=false;$('landingResumeBtn').classList.add('hidden');if(window.cloudDeleteGame)window.cloudDeleteGame();window.startNewLifeFromLanding(false)};
+window.startFreshFromCloud=async function(){
+  // 가장 먼저 기존 세이브 선택창을 닫는다. (이전에는 이 팝업이 뒤에 계속 남아 있었다.)
+  hide('resumeModal');
+  window.__loadedCloudGame=null;
+  window.__hasCloudSave=false;
+  $('landingResumeBtn').classList.add('hidden');
+  game=null;
+
+  // 기존 인생 삭제 + 예약된 이전 자동저장이 완전히 취소될 때까지 기다린다.
+  if(window.cloudDeleteGame) await window.cloudDeleteGame();
+
+  window.startNewLifeFromLanding(false);
+};
 window.enterGuestMode=function(){window.__firebaseUser=null;$('accountUser').textContent='게스트';$('logoutBtn').classList.add('hidden');hide('authOverlay');window.startNewLifeFromLanding()};
 $('resumeGameBtn').onclick=window.resumeCloudGame;
 $('newGameBtn').onclick=window.startFreshFromCloud;
@@ -1875,6 +1884,8 @@ let auth = null;
 let db = null;
 let currentUser = null;
 let saveTimer = null;
+// 세이브 세대 번호. 새 인생으로 전환할 때 증가시켜 이전 인생의 지연 저장을 무효화한다.
+let saveEpoch = 0;
 
 function setMode(next){
   mode = next;
@@ -1943,6 +1954,8 @@ if(!configured){
   });
 
   async function doLogout(){
+    saveEpoch += 1;
+    if(saveTimer){clearTimeout(saveTimer);saveTimer=null;}
     await signOut(auth);
     window.__firebaseUser=null;
     window.__loadedCloudGame=null;
@@ -2038,12 +2051,16 @@ if(!configured){
   window.cloudScheduleGameSave = gameState=>{
     if(!currentUser || !db || !gameState) return;
     clearTimeout(saveTimer);
+    const scheduledEpoch = saveEpoch;
+    // 호출 당시의 게임 상태를 즉시 복제해 이후 객체 변경과도 분리한다.
+    const cleanGame = JSON.parse(JSON.stringify(gameState));
     saveTimer = setTimeout(async()=>{
+      // 새 인생이 시작되었다면 과거 인생에서 예약된 저장은 폐기한다.
+      if(scheduledEpoch !== saveEpoch) return;
       try{
-        const cleanGame = JSON.parse(JSON.stringify(gameState));
         await setDoc(doc(db,"users",currentUser.uid,"saves","current"),{
           game:cleanGame,
-          version:3,
+          version:4,
           updatedAt:serverTimestamp()
         },{merge:true});
       }catch(err){
@@ -2053,11 +2070,18 @@ if(!configured){
   };
 
   window.cloudDeleteGame = async()=>{
+    // 이전 인생에서 대기 중이던 자동저장을 먼저 완전히 폐기한다.
+    saveEpoch += 1;
+    if(saveTimer){
+      clearTimeout(saveTimer);
+      saveTimer = null;
+    }
     if(!currentUser || !db) return;
     try{
       await deleteDoc(doc(db,"users",currentUser.uid,"saves","current"));
     }catch(err){
       console.warn("Cloud game delete failed",err);
+      // 삭제 실패 시에도 과거 timer를 다시 살리지는 않는다.
     }
   };
 }
