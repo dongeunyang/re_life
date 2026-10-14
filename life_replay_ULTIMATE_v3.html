@@ -1105,6 +1105,392 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media (max-width:820px){
   .cine-copy h2 br,.cine-final h2 br{display:none!important}
 }
+
+/* ===== LIFE EXCHANGE · STOCK MINI GAME ===== */
+.stock-market{
+  margin-top:14px;
+  padding:26px;
+  overflow:hidden;
+}
+.stock-market-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  padding-bottom:20px;
+  border-bottom:1px solid #2d3540;
+}
+.stock-eyebrow{
+  margin-bottom:8px;
+  color:#b79561;
+  font-size:9px;
+  font-weight:750;
+  letter-spacing:.24em;
+}
+.stock-market-head h2{
+  margin:0;
+  font-size:25px!important;
+  line-height:1.15!important;
+  letter-spacing:-.04em!important;
+}
+.stock-market-head p{
+  max-width:650px;
+  margin:9px 0 0;
+  color:#89939f;
+  font-size:12px;
+  line-height:1.7;
+  word-break:keep-all;
+}
+.stock-age-badge{
+  flex:0 0 auto;
+  padding:8px 11px;
+  border:1px solid #3a4450;
+  border-radius:999px;
+  background:#11171e;
+  color:#a7b0ba;
+  font-size:10px;
+  white-space:nowrap;
+}
+.stock-summary{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin:18px 0 12px;
+}
+.stock-summary-card{
+  min-width:0;
+  padding:12px 13px;
+  border:1px solid #303944;
+  border-radius:12px;
+  background:#11171e;
+}
+.stock-summary-card span{
+  display:block;
+  color:#717c88;
+  font-size:9px;
+}
+.stock-summary-card strong{
+  display:block;
+  margin-top:5px;
+  color:#e8e1d6;
+  font-size:15px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.stock-summary-card strong.up{color:#d68b81}
+.stock-summary-card strong.down{color:#7fa6d6}
+.stock-news{
+  min-height:54px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid #383727;
+  border-radius:12px;
+  background:linear-gradient(90deg,rgba(69,55,33,.32),rgba(21,25,31,.86));
+}
+.stock-news span{
+  flex:0 0 auto;
+  color:#b9955e;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.18em;
+}
+.stock-news strong{
+  color:#cfc7bb;
+  font-size:12px;
+  font-weight:550;
+  line-height:1.55;
+  word-break:keep-all;
+}
+.stock-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:12px;
+}
+.stock-card{
+  min-width:0;
+  padding:15px;
+  border:1px solid #303944;
+  border-radius:14px;
+  background:linear-gradient(180deg,#151b22,#11161d);
+}
+.stock-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.stock-name{
+  min-width:0;
+}
+.stock-name b{
+  display:block;
+  color:#e3ddd4;
+  font-size:14px;
+}
+.stock-name span{
+  display:block;
+  margin-top:3px;
+  color:#6f7985;
+  font-size:9px;
+  letter-spacing:.05em;
+}
+.stock-price{
+  flex:0 0 auto;
+  text-align:right;
+}
+.stock-price b{
+  display:block;
+  color:#eee7dc;
+  font-size:15px;
+  font-variant-numeric:tabular-nums;
+}
+.stock-change{
+  display:block;
+  margin-top:3px;
+  font-size:10px;
+  font-weight:700;
+}
+.stock-change.up{color:#d87870}
+.stock-change.down{color:#7199cc}
+.stock-change.flat{color:#7f8994}
+.stock-spark{
+  width:100%;
+  height:48px;
+  margin:11px 0 6px;
+  display:block;
+  overflow:visible;
+}
+.stock-spark line{stroke:#252d36;stroke-width:1}
+.stock-spark polyline{fill:none;stroke:currentColor;stroke-width:2;vector-effect:non-scaling-stroke}
+.stock-spark.up{color:#b96d66}
+.stock-spark.down{color:#668dbd}
+.stock-spark.flat{color:#8e969e}
+.stock-position{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:5px;
+  margin-top:8px;
+}
+.stock-position div{
+  min-width:0;
+  padding:7px 8px;
+  border-radius:8px;
+  background:#0e1319;
+}
+.stock-position span{
+  display:block;
+  color:#66717d;
+  font-size:8px;
+}
+.stock-position b{
+  display:block;
+  margin-top:3px;
+  color:#bfc7cf;
+  font-size:10px;
+  overflow-wrap:anywhere;
+}
+.stock-trades{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:10px;
+}
+.stock-trade-group{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:4px;
+}
+.stock-trade-group button{
+  min-width:0;
+  min-height:35px;
+  padding:5px 3px;
+  border-radius:8px;
+  font-size:9px;
+}
+.stock-buy{
+  border:1px solid rgba(165,92,84,.50);
+  background:rgba(105,49,45,.17);
+  color:#d99891;
+}
+.stock-sell{
+  border:1px solid rgba(77,111,155,.50);
+  background:rgba(45,67,98,.18);
+  color:#91afd4;
+}
+.stock-trade-group button:disabled{
+  opacity:.3;
+  cursor:not-allowed;
+}
+.stock-lock{
+  grid-column:1/-1;
+  padding:42px 18px;
+  border:1px dashed #37404b;
+  border-radius:14px;
+  text-align:center;
+  background:#10151b;
+}
+.stock-lock .lock-icon{
+  width:44px;
+  height:44px;
+  margin:0 auto 13px;
+  display:grid;
+  place-items:center;
+  border:1px solid #4b4436;
+  border-radius:50%;
+  color:#c4a36e;
+  font-size:18px;
+}
+.stock-lock b{
+  display:block;
+  color:#ddd5ca;
+  font-size:15px;
+}
+.stock-lock p{
+  max-width:460px;
+  margin:8px auto 0;
+  color:#737e8a;
+  font-size:11px;
+  line-height:1.65;
+  word-break:keep-all;
+}
+.stock-footnote{
+  margin-top:12px;
+  color:#59636e;
+  font-size:9px;
+  line-height:1.5;
+  text-align:right;
+}
+.stock-toast{
+  position:fixed;
+  left:50%;
+  bottom:max(24px,calc(16px + env(safe-area-inset-bottom)));
+  z-index:170;
+  max-width:min(420px,calc(100% - 28px));
+  padding:11px 15px;
+  border:1px solid #46505d;
+  border-radius:11px;
+  background:rgba(17,22,29,.96);
+  box-shadow:0 16px 45px rgba(0,0,0,.4);
+  color:#d7d0c5;
+  font-family:Pretendard,"Noto Sans KR",sans-serif;
+  font-size:11px;
+  line-height:1.55;
+  text-align:center;
+  transform:translateX(-50%);
+  animation:stockToastIn .2s ease both;
+}
+@keyframes stockToastIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+
+@media(max-width:820px){
+  .stock-market{padding:18px 13px!important;margin-top:10px!important;border-radius:17px!important}
+  .stock-market-head{
+    display:block!important;
+    padding-bottom:15px!important;
+  }
+  .stock-market-head h2{font-size:22px!important}
+  .stock-market-head p{font-size:11px!important;line-height:1.65!important}
+  .stock-age-badge{
+    display:inline-flex!important;
+    margin-top:12px!important;
+    font-size:9px!important;
+  }
+  .stock-summary{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:6px!important;
+    margin-top:13px!important;
+  }
+  .stock-summary-card{padding:10px!important}
+  .stock-summary-card strong{font-size:13px!important}
+  .stock-news{
+    align-items:flex-start!important;
+    gap:7px!important;
+    padding:10px 11px!important;
+  }
+  .stock-news{flex-direction:column!important}
+  .stock-grid{grid-template-columns:1fr!important;gap:8px!important}
+  .stock-card{padding:13px!important}
+  .stock-trades{gap:5px!important}
+  .stock-trade-group button{min-height:38px!important;font-size:9px!important}
+  .stock-footnote{text-align:left!important}
+}
+@media(max-width:360px){
+  .stock-position{grid-template-columns:1fr 1fr!important}
+  .stock-position div:last-child{grid-column:1/-1}
+  .stock-trades{grid-template-columns:1fr!important}
+}
+
+
+/* ===== DEVELOPER NOTES ===== */
+.header-devnotes{min-height:40px;padding:0 15px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(141,153,170,.34);border-radius:10px;background:rgba(15,20,27,.48);color:#bcc5cf;font-size:12px;backdrop-filter:blur(10px);transition:border-color .2s ease,background .2s ease,transform .2s ease,color .2s ease}
+.header-devnotes:hover{transform:translateY(-1px);border-color:rgba(183,194,208,.6);background:rgba(27,34,44,.7);color:#e0e5eb}
+.devnotes-icon{font-size:11px;color:#d2b078}
+.devnotes-overlay{position:fixed;inset:0;z-index:145;display:grid;place-items:center;padding:24px}
+.devnotes-overlay.hidden{display:none!important}
+.devnotes-backdrop{position:absolute;inset:0;background:rgba(4,7,11,.88);backdrop-filter:blur(18px)}
+.devnotes-shell{position:relative;z-index:1;width:min(1040px,100%);height:min(760px,90vh);display:flex;flex-direction:column;overflow:hidden;border:1px solid #303947;border-radius:24px;background:#0f141b;box-shadow:0 38px 120px rgba(0,0,0,.58)}
+.devnotes-header{flex:0 0 auto;padding:24px 27px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;border-bottom:1px solid #29323d;background:linear-gradient(180deg,#161c24,#11171e)}
+.devnotes-eyebrow{margin-bottom:7px;color:#b5925d;font-size:8px;font-weight:750;letter-spacing:.25em}
+.devnotes-header h2{margin:0;color:#eee8df;font-size:28px;line-height:1.2;letter-spacing:-.045em}
+.devnotes-header p{margin:8px 0 0;color:#798490;font-size:11px;line-height:1.6}
+.devnotes-head-actions{display:flex;align-items:center;gap:9px}
+.dev-badge{padding:6px 8px;border:1px solid rgba(210,176,120,.36);border-radius:999px;background:rgba(77,58,31,.25);color:#d3b47f;font-size:8px;font-weight:800;letter-spacing:.15em}
+.devnotes-close{width:39px;height:39px;display:grid;place-items:center;border:1px solid #39434f;border-radius:50%;background:#151b22;color:#aeb7c1;font-size:20px}
+.devnotes-body{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:310px minmax(0,1fr)}
+.devnotes-list-pane{min-height:0;display:flex;flex-direction:column;border-right:1px solid #29323d;background:#0d1218}
+.devnotes-list-head{padding:14px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #252e38}
+.devnotes-list-head>span{color:#626d79;font-size:8px;font-weight:750;letter-spacing:.22em}
+.dev-new-btn{min-height:31px;padding:0 9px;border:1px solid #675438;border-radius:8px;background:#201b14;color:#d4b57e;font-size:9px}
+.devnotes-list{flex:1 1 auto;overflow-y:auto;padding:7px}
+.devnotes-loading,.devnotes-no-posts{padding:25px 14px;color:#68737f;font-size:11px;line-height:1.7;text-align:center}
+.devnote-list-item{width:100%;padding:13px 12px;border:0;border-bottom:1px solid #222a33;background:transparent;text-align:left;color:inherit}
+.devnote-list-item:hover,.devnote-list-item.active{background:#151b22}
+.devnote-list-item b{display:block;color:#cfd6dd;font-size:12px;line-height:1.45;word-break:keep-all}
+.devnote-list-item span{display:block;margin-top:5px;color:#616c77;font-size:9px}
+.devnotes-view-pane{min-width:0;min-height:0;overflow-y:auto;padding:34px 38px;background:linear-gradient(180deg,#11171e,#0e1319)}
+.devnotes-empty{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#67727d}
+.devnotes-empty>span{font-size:22px;color:#b8955d;margin-bottom:12px}
+.devnotes-empty b{color:#aeb7c0;font-size:15px}
+.devnotes-empty p{margin:8px 0 0;font-size:11px}
+.devnotes-meta{color:#6b7681;font-size:9px;letter-spacing:.08em}
+.devnotes-view h3{margin:10px 0 20px;color:#eee8df;font-size:28px;line-height:1.3;letter-spacing:-.04em;word-break:keep-all}
+.devnotes-content{color:#b9c1c9;font-size:13px;line-height:1.9;white-space:pre-wrap;word-break:keep-all;overflow-wrap:break-word}
+.devnotes-admin-actions{margin-top:29px;padding-top:18px;display:flex;gap:7px;border-top:1px solid #2b343f}
+.dev-edit-btn,.dev-delete-btn{min-height:38px;padding:0 13px;border-radius:9px;font-size:10px}
+.dev-edit-btn{border:1px solid #46515e;background:#151c24;color:#bdc5ce}
+.dev-delete-btn{border:1px solid rgba(151,74,74,.42);background:rgba(80,31,31,.18);color:#cf8585}
+.devnotes-editor{display:grid;gap:17px}
+.devnotes-editor-label{color:#b28f5a;font-size:8px;font-weight:750;letter-spacing:.23em}
+.devnotes-editor label>span{display:block;margin-bottom:7px;color:#7b8692;font-size:10px}
+.devnotes-editor input,.devnotes-editor textarea{width:100%;border:1px solid #394450;border-radius:11px;background:#0c1117;color:#dde2e8;font-family:Pretendard,"Noto Sans KR",sans-serif;font-size:13px;outline:none}
+.devnotes-editor input{min-height:47px;padding:0 13px}
+.devnotes-editor textarea{min-height:330px;padding:13px;resize:vertical;line-height:1.75}
+.devnotes-editor input:focus,.devnotes-editor textarea:focus{border-color:#806a47;box-shadow:0 0 0 3px rgba(128,106,71,.08)}
+.devnotes-editor-actions{display:flex;justify-content:flex-end;gap:7px}
+.devnotes-editor-actions button{min-width:92px;min-height:42px}
+.devnotes-footer{flex:0 0 auto;padding:10px 17px;border-top:1px solid #29323d;background:#0c1117;color:#5f6974;font-size:9px;line-height:1.5}
+@media(max-width:820px){
+ .header-devnotes{min-height:40px!important;padding:0 8px!important;font-size:11px!important;gap:4px!important}
+ .landing-auth{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+ .landing-auth>button{width:100%!important;min-width:0!important}
+ .landing-auth .header-user:not(.hidden){grid-column:1/-1!important;max-width:100%!important;padding:2px 2px 0!important}
+ .devnotes-overlay{padding:calc(8px + env(safe-area-inset-top)) 8px calc(8px + env(safe-area-inset-bottom))!important;align-items:flex-start!important;overflow-y:auto}
+ .devnotes-shell{width:100%!important;height:auto!important;min-height:calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;max-height:none!important;border-radius:17px!important}
+ .devnotes-header{padding:19px 17px 16px!important}
+ .devnotes-header h2{font-size:23px!important}
+ .devnotes-header p{font-size:10px!important;word-break:keep-all}
+ .devnotes-body{grid-template-columns:1fr!important}
+ .devnotes-list-pane{max-height:240px!important;border-right:0!important;border-bottom:1px solid #29323d!important}
+ .devnotes-view-pane{min-height:420px!important;padding:25px 18px!important}
+ .devnotes-view h3{font-size:23px!important}
+ .devnotes-content{font-size:13px!important;line-height:1.8!important}
+ .devnotes-editor textarea{min-height:250px!important;font-size:16px!important}
+ .devnotes-editor input{font-size:16px!important}
+}
+@media(max-width:360px){.landing-auth{gap:4px!important}.header-devnotes,.header-theme,.landing-auth button{font-size:10px!important;padding-inline:5px!important}}
+
 </style>
 </head>
 <body>
@@ -1117,6 +1503,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
       <button class="header-login" id="landingLoginBtn" type="button">로그인</button>
       <button class="header-signup" id="landingSignupBtn" type="button">회원가입</button>
       <button class="header-theme" id="themeSongBtn" type="button" aria-label="테마곡 열기"><span class="theme-note">♪</span><span>테마곡</span></button>
+      <button class="header-devnotes" id="developerNotesBtn" type="button" aria-label="개발자 노트 열기"><span class="devnotes-icon">✦</span><span>개발자 노트</span></button>
       <button class="header-login hidden" id="landingLogoutBtn" type="button">로그아웃</button>
     </div>
   </header>
@@ -1194,7 +1581,7 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   <section class="cine-final">
     <div class="cine-inner"><div class="cine-copy">
       <div class="cine-number">05 · REPLAY</div>
-      <h2>그렇다면, <br>이번에는 <br>어떻게 살겠습니까?</h2>
+      <h2>그렇다면, <br>이번에는 어떻게 살겠습니까?</h2>
       <p>이제 0세부터 다시 시작합니다.
 당신이 고른 선택은 삶의 기록에 남고,
 마지막 문장은 그 기록을 따라 달라집니다.</p>
@@ -1207,6 +1594,68 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   </section>
 </div>
 
+
+
+<div class="devnotes-overlay hidden" id="developerNotesOverlay" aria-hidden="true">
+  <div class="devnotes-backdrop" id="developerNotesBackdrop"></div>
+  <section class="devnotes-shell" role="dialog" aria-modal="true" aria-labelledby="developerNotesTitle">
+    <div class="devnotes-header">
+      <div>
+        <div class="devnotes-eyebrow">LIFE REPLAY · DEV LOG</div>
+        <h2 id="developerNotesTitle">개발자 노트</h2>
+        <p>업데이트, 수정 사항, 앞으로 추가될 기능을 기록합니다.</p>
+      </div>
+      <div class="devnotes-head-actions">
+        <span class="dev-badge hidden" id="developerBadge">DEVELOPER</span>
+        <button class="devnotes-close" id="developerNotesClose" type="button" aria-label="닫기">×</button>
+      </div>
+    </div>
+
+    <div class="devnotes-body">
+      <aside class="devnotes-list-pane">
+        <div class="devnotes-list-head">
+          <span>NOTES</span>
+          <button class="dev-new-btn hidden" id="newDeveloperNoteBtn" type="button">+ 새 글</button>
+        </div>
+        <div class="devnotes-list" id="developerNotesList">
+          <div class="devnotes-loading">개발자 노트를 불러오는 중입니다.</div>
+        </div>
+      </aside>
+
+      <article class="devnotes-view-pane">
+        <div class="devnotes-empty" id="developerNoteEmpty">
+          <span>✦</span>
+          <b>개발자 노트</b>
+          <p>왼쪽의 글을 선택하면 내용을 볼 수 있습니다.</p>
+        </div>
+
+        <div class="devnotes-view hidden" id="developerNoteView">
+          <div class="devnotes-meta" id="developerNoteDate"></div>
+          <h3 id="developerNoteViewTitle"></h3>
+          <div class="devnotes-content" id="developerNoteViewBody"></div>
+          <div class="devnotes-admin-actions hidden" id="developerNoteAdminActions">
+            <button class="dev-edit-btn" id="editDeveloperNoteBtn" type="button">수정</button>
+            <button class="dev-delete-btn" id="deleteDeveloperNoteBtn" type="button">삭제</button>
+          </div>
+        </div>
+
+        <form class="devnotes-editor hidden" id="developerNoteEditor">
+          <div class="devnotes-editor-label">DEVELOPER EDITOR</div>
+          <label><span>제목</span><input id="developerNoteTitleInput" type="text" maxlength="80" placeholder="업데이트 제목"></label>
+          <label><span>내용</span><textarea id="developerNoteBodyInput" maxlength="10000" placeholder="개발자 노트를 작성하세요."></textarea></label>
+          <div class="devnotes-editor-actions">
+            <button class="secondary" id="cancelDeveloperNoteBtn" type="button">취소</button>
+            <button class="primary" id="saveDeveloperNoteBtn" type="submit">게시하기</button>
+          </div>
+        </form>
+      </article>
+    </div>
+
+    <div class="devnotes-footer">
+      <span id="developerNotesStatus">모든 사용자가 읽을 수 있으며, 개발자 계정만 글을 작성할 수 있습니다.</span>
+    </div>
+  </section>
+</div>
 
 <div class="theme-overlay hidden" id="themeSongOverlay" aria-hidden="true">
   <div class="theme-backdrop" id="themeBackdrop"></div>
@@ -1265,6 +1714,27 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
       <div class="section"><h3>삶의 기록</h3><div class="log" id="lifeLog"></div></div>
     </aside>
   </div>
+
+  <section class="card stock-market" id="stockMarketSection">
+    <div class="stock-market-head">
+      <div>
+        <div class="stock-eyebrow">LIFE EXCHANGE · MINI MARKET</div>
+        <h2>인생 주식시장</h2>
+        <p>뉴스와 경기 흐름에 따라 매년 주가가 달라집니다. 매수한 주식은 실제 현금과 순자산에 반영됩니다.</p>
+      </div>
+      <div class="stock-age-badge" id="stockMarketAge">시장 준비 중</div>
+    </div>
+
+    <div class="stock-summary" id="stockSummary"></div>
+
+    <div class="stock-news" id="stockNews">
+      <span>MARKET NEWS</span>
+      <strong>아직 시장이 열리지 않았습니다.</strong>
+    </div>
+
+    <div class="stock-grid" id="stockGrid"></div>
+    <div class="stock-footnote">※ 게임 속 가상 기업과 가상 주가입니다. 실제 투자 정보와는 관계가 없습니다.</div>
+  </section>
 </div>
 
 
@@ -1343,7 +1813,7 @@ meta.achievements=meta.achievements||[];meta.endings=meta.endings||[];meta.profi
 let game=null,tempName='',pendingLegacy='future';
 const statDefs=[['happy','❤️ 행복'],['health','💪 건강'],['skill','🧠 능력'],['relation','👥 관계'],['stress','⚡ 스트레스'],['reputation','⭐ 명성']];
 const achievements=[
- ['born','첫 페이지','0세의 삶 시작'],['firstFriend','첫 친구','처음으로 친구가 생김'],['firstJob','첫 월급','처음으로 연소득이 생김'],['firstMillion','첫 1억','순자산 1억 달성'],['tenBillion','자산가','순자산 10억 달성'],['executive','직장의 끝','임원 또는 대표 달성'],['marriage','동행','결혼함'],['parent','부모가 되다','자녀가 생김'],['trueLove','긴 동행','배우자와 30년 이상 함께함'],['healthyOld','건강한 노년','70세에 건강 80 이상'],['peaceful','평범한 행복','사망 시 행복 85 이상'],['workOnly','일밖에 몰랐던 사람','명성 80 이상, 관계 35 이하'],['bankrupt','다시 시작','마이너스 순자산 뒤 회복'],['mentor','남겨준 사람','후배에게 경험을 건넴'],['century','백세 인생','100세 이상 생존'],['collector10','열 개의 삶','엔딩 10종 발견'],['collector50','반복되는 세계','엔딩 50종 발견'],['collector100','모든 삶을 본 자','엔딩 100종 발견']
+ ['born','첫 페이지','0세의 삶 시작'],['firstFriend','첫 친구','처음으로 친구가 생김'],['firstJob','첫 월급','처음으로 연소득이 생김'],['firstMillion','첫 1억','순자산 1억 달성'],['tenBillion','자산가','순자산 10억 달성'],['executive','직장의 끝','임원 또는 대표 달성'],['marriage','동행','결혼함'],['parent','부모가 되다','자녀가 생김'],['trueLove','긴 동행','배우자와 30년 이상 함께함'],['healthyOld','건강한 노년','70세에 건강 80 이상'],['peaceful','평범한 행복','사망 시 행복 85 이상'],['workOnly','일밖에 몰랐던 사람','명성 80 이상, 관계 35 이하'],['bankrupt','다시 시작','마이너스 순자산 뒤 회복'],['mentor','남겨준 사람','후배에게 경험을 건넴'],['century','백세 인생','100세 이상 생존'],['collector10','열 개의 삶','엔딩 10종 발견'],['collector50','반복되는 세계','엔딩 50종 발견'],['collector100','모든 삶을 본 자','엔딩 100종 발견'],['firstStock','첫 주주','주식을 처음 매수함'],['marketMillion','시장 경험','주식 평가액 1,000만원 달성']
 ];
 const npcNames=['민수','지훈','지아','하늘','유진','도윤','수아','현우','나연','시우','서진','다은','재윤'];
 const partnerNames=['서연','지아','수아','유진','하린','예진','도현','민재','은채','지우'];
@@ -1353,20 +1823,269 @@ function saveMeta(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(meta))}catc
 function unlock(id){if(!meta.achievements.includes(id)){meta.achievements.push(id);saveMeta()}}
 function fmtMoney(n){n=Math.round(n||0);if(Math.abs(n)>=100000000)return (n/100000000).toFixed(Math.abs(n)%100000000===0?0:1)+'억';if(Math.abs(n)>=10000)return Math.round(n/10000).toLocaleString()+'만';return n.toLocaleString()+'원'}
 function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
-function netWorth(){return game?game.cash+game.invest+game.home-game.debt:0}
+
+const stockDefs=[
+ {id:'hanbit',code:'HBT',name:'한빛테크',sector:'AI·반도체',base:78000,drift:.065,vol:.22,key:'tech'},
+ {id:'green',code:'GRM',name:'그린모빌리티',sector:'전기차·에너지',base:46500,drift:.045,vol:.19,key:'energy'},
+ {id:'mirae',code:'MRB',name:'미래바이오',sector:'바이오·헬스',base:112000,drift:.055,vol:.28,key:'bio'},
+ {id:'blueport',code:'BPL',name:'블루포트로지스',sector:'물류·운송',base:33800,drift:.035,vol:.15,key:'logistics'},
+ {id:'onul',code:'ONC',name:'오늘콘텐츠',sector:'미디어·콘텐츠',base:25400,drift:.045,vol:.24,key:'content'}
+];
+
+const stockNewsPool=[
+ {text:'AI 서버와 반도체 수요가 크게 늘었다.',all:.01,tech:.14,logistics:.02},
+ {text:'정부가 친환경 에너지와 전기차 인프라 투자를 확대했다.',energy:.15,tech:.02},
+ {text:'신약 임상 결과가 시장 기대를 웃돌았다.',bio:.18},
+ {text:'글로벌 물동량이 증가하면서 운송 업종 실적 기대가 커졌다.',logistics:.13,energy:.02},
+ {text:'신작 콘텐츠가 해외에서 예상 밖의 흥행을 기록했다.',content:.17},
+ {text:'기준금리 인상 우려로 성장주가 약세를 보였다.',all:-.06,tech:-.06,bio:-.05,content:-.04},
+ {text:'경기 침체 우려가 커지며 투자 심리가 얼어붙었다.',all:-.10,logistics:-.05,energy:-.04},
+ {text:'물가가 안정되며 시장 전반에 안도감이 퍼졌다.',all:.07},
+ {text:'해외 공급망 차질로 제조업과 물류 업종이 흔들렸다.',logistics:-.13,energy:-.07,tech:-.04},
+ {text:'대형 기술기업의 실적 호조가 시장 분위기를 끌어올렸다.',tech:.12,all:.03},
+ {text:'바이오 업종 규제 강화 소식에 관련 종목이 흔들렸다.',bio:-.16},
+ {text:'원자재 가격 상승으로 에너지·운송 기업의 비용 부담이 커졌다.',energy:-.09,logistics:-.08},
+ {text:'소비 심리가 회복되며 콘텐츠와 서비스 업종에 자금이 들어왔다.',content:.12,all:.02},
+ {text:'시장에는 특별한 재료가 없었고 종목별 차별화가 이어졌다.',all:0},
+ {text:'예상보다 빠른 경기 회복 신호에 위험자산 선호가 살아났다.',all:.09},
+ {text:'기업 실적 전망이 하향되며 시장 전체가 조정을 받았다.',all:-.08},
+ {text:'신규 물류 자동화 기술이 상용화 단계에 들어섰다.',logistics:.10,tech:.06},
+ {text:'친환경차 판매 둔화 전망이 나오며 관련 업종이 약세를 보였다.',energy:-.12},
+ {text:'OTT와 게임 시장의 성장세가 다시 빨라졌다.',content:.14,tech:.02},
+ {text:'대형 임상 실패 소식이 바이오 업종 투자심리를 위축시켰다.',bio:-.19},
+ {text:'환율 안정과 수출 회복으로 국내 기업 실적 전망이 개선됐다.',all:.06,logistics:.04},
+ {text:'전 세계 증시가 급락하며 위험자산 회피 심리가 강해졌다.',all:-.18},
+ {text:'급락 이후 저가 매수세가 유입되며 시장이 강하게 반등했다.',all:.14},
+ {text:'반도체 공급 과잉 우려가 커지며 기술주가 조정을 받았다.',tech:-.14},
+ {text:'고령화와 의료 수요 증가 전망으로 헬스케어 업종이 주목받았다.',bio:.11}
+];
+
+function stockRnd(){
+  return ((Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random())-3)/3;
+}
+function ensureStockMarket(){
+  if(!game)return;
+  if(!game.stockMarket){
+    const prices={},prev={},history={},holdings={};
+    stockDefs.forEach(s=>{
+      const start=Math.max(1000,Math.round(s.base*(.94+Math.random()*.12)/100)*100);
+      prices[s.id]=start;prev[s.id]=start;history[s.id]=[start];
+      holdings[s.id]={shares:0,avg:0};
+    });
+    game.stockMarket={
+      lastAge:game.age,
+      prices,prev,history,holdings,
+      news:'시장은 조용히 다음 해를 기다리고 있습니다.',
+      newsAge:game.age
+    };
+  }
+  const m=game.stockMarket;
+  m.prices=m.prices||{};
+  m.prev=m.prev||{};
+  m.history=m.history||{};
+  m.holdings=m.holdings||{};
+  stockDefs.forEach(s=>{
+    if(!Number.isFinite(m.prices[s.id]))m.prices[s.id]=s.base;
+    if(!Number.isFinite(m.prev[s.id]))m.prev[s.id]=m.prices[s.id];
+    if(!Array.isArray(m.history[s.id]))m.history[s.id]=[m.prices[s.id]];
+    if(!m.holdings[s.id])m.holdings[s.id]={shares:0,avg:0};
+    m.holdings[s.id].shares=Math.max(0,Math.floor(Number(m.holdings[s.id].shares)||0));
+    m.holdings[s.id].avg=Math.max(0,Number(m.holdings[s.id].avg)||0);
+  });
+}
+function advanceStockMarket(){
+  if(!game)return;
+  ensureStockMarket();
+  const m=game.stockMarket;
+  if(!Number.isFinite(m.lastAge))m.lastAge=game.age;
+  if(game.age<=m.lastAge)return;
+
+  while(m.lastAge<game.age){
+    m.lastAge+=1;
+    if(m.lastAge<25)continue;
+
+    const news=pick(stockNewsPool);
+    const macro=(news.all||0);
+    stockDefs.forEach(s=>{
+      const before=m.prices[s.id];
+      m.prev[s.id]=before;
+      let r=s.drift+stockRnd()*s.vol+macro+(news[s.key]||0);
+
+      // Very occasional company-specific surprise.
+      const surprise=Math.random();
+      if(surprise<.025)r-=.30+Math.random()*.18;
+      else if(surprise>.975)r+=.28+Math.random()*.22;
+
+      r=Math.max(-.58,Math.min(.72,r));
+      const next=Math.max(1000,Math.round(before*(1+r)/100)*100);
+      m.prices[s.id]=next;
+      m.history[s.id].push(next);
+      if(m.history[s.id].length>14)m.history[s.id].shift();
+    });
+    m.news=news.text;
+    m.newsAge=m.lastAge;
+  }
+}
+function stockPortfolioValue(){
+  if(!game||!game.stockMarket)return 0;
+  ensureStockMarket();
+  return stockDefs.reduce((sum,s)=>{
+    const h=game.stockMarket.holdings[s.id];
+    return sum+h.shares*game.stockMarket.prices[s.id];
+  },0);
+}
+function stockBookCost(){
+  if(!game||!game.stockMarket)return 0;
+  ensureStockMarket();
+  return stockDefs.reduce((sum,s)=>{
+    const h=game.stockMarket.holdings[s.id];
+    return sum+h.shares*h.avg;
+  },0);
+}
+function stockPnL(){
+  return stockPortfolioValue()-stockBookCost();
+}
+function stockToast(msg){
+  let t=document.getElementById('stockToast');
+  if(t)t.remove();
+  t=document.createElement('div');
+  t.id='stockToast';t.className='stock-toast';t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2200);
+}
+function stockSparkline(arr,change){
+  const data=(arr&&arr.length?arr:[1]);
+  const w=260,h=48,p=3,min=Math.min(...data),max=Math.max(...data);
+  const range=Math.max(1,max-min);
+  const pts=data.map((v,i)=>{
+    const x=p+(data.length===1?0:i/(data.length-1))*(w-p*2);
+    const y=p+(1-(v-min)/range)*(h-p*2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  const cls=change>0?'up':change<0?'down':'flat';
+  return `<svg class="stock-spark ${cls}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="${h-1}" x2="${w}" y2="${h-1}"></line><polyline points="${pts}"></polyline></svg>`;
+}
+function tradeStock(id,side,amount){
+  if(!game||!game.alive)return stockToast('현재는 거래할 수 없습니다.');
+  if(game.age<25)return stockToast('이 게임에서는 25세부터 주식시장을 이용할 수 있습니다.');
+  ensureStockMarket();
+  const s=stockDefs.find(x=>x.id===id);
+  if(!s)return;
+  const m=game.stockMarket,h=m.holdings[id],price=m.prices[id];
+  let qty=0;
+
+  if(side==='buy'){
+    const max=Math.floor(game.cash/price);
+    qty=amount==='max'?max:Math.min(max,Number(amount)||0);
+    qty=Math.max(0,Math.floor(qty));
+    if(qty<1)return stockToast('현금이 부족해서 매수할 수 없습니다.');
+    const beforeShares=h.shares;
+    const cost=qty*price;
+    h.avg=((h.avg*h.shares)+cost)/(h.shares+qty);
+    h.shares+=qty;
+    game.cash-=cost;
+    if(beforeShares===0){
+      unlock('firstStock');
+      addLog(game.age,'첫 주식 투자',`${s.name} ${qty}주를 매수했습니다.`);
+    }
+    stockToast(`${s.name} ${qty}주를 ${fmtMoney(cost)}에 매수했습니다.`);
+  }else{
+    qty=amount==='max'?h.shares:Math.min(h.shares,Number(amount)||0);
+    qty=Math.max(0,Math.floor(qty));
+    if(qty<1)return stockToast('매도할 보유 수량이 없습니다.');
+    const value=qty*price;
+    h.shares-=qty;
+    game.cash+=value;
+    if(h.shares===0)h.avg=0;
+    stockToast(`${s.name} ${qty}주를 ${fmtMoney(value)}에 매도했습니다.`);
+  }
+  if(stockPortfolioValue()>=10000000)unlock('marketMillion');
+  renderAll();
+}
+function renderStockMarket(){
+  const grid=$('stockGrid'),summary=$('stockSummary'),news=$('stockNews'),age=$('stockMarketAge');
+  if(!grid||!summary||!news||!age)return;
+
+  if(!game){
+    age.textContent='시장 대기';
+    summary.innerHTML='';
+    news.innerHTML='<span>MARKET NEWS</span><strong>인생을 시작하면 주식시장도 함께 움직입니다.</strong>';
+    grid.innerHTML='<div class="stock-lock"><div class="lock-icon">₩</div><b>아직 시작되지 않은 시장</b><p>인생을 시작하면 시장의 시간이 함께 흐르기 시작합니다.</p></div>';
+    return;
+  }
+
+  ensureStockMarket();
+  advanceStockMarket();
+
+  const value=stockPortfolioValue(),cost=stockBookCost(),pnl=value-cost;
+  const pnlPct=cost>0?pnl/cost*100:0;
+  age.textContent=`${game.age}세 · ${game.stockMarket.newsAge||game.age}년 시장`;
+  summary.innerHTML=[
+    ['보유 현금',fmtMoney(game.cash),''],
+    ['주식 평가액',fmtMoney(value),''],
+    ['평가손익',`${pnl>=0?'+':''}${fmtMoney(pnl)}`,pnl>0?'up':pnl<0?'down':''],
+    ['수익률',`${pnlPct>=0?'+':''}${pnlPct.toFixed(1)}%`,pnlPct>0?'up':pnlPct<0?'down':'']
+  ].map(x=>`<div class="stock-summary-card"><span>${x[0]}</span><strong class="${x[2]}">${x[1]}</strong></div>`).join('');
+
+  news.innerHTML=`<span>MARKET NEWS</span><strong>${game.stockMarket.news||'시장은 다음 변화를 기다리고 있습니다.'}</strong>`;
+
+  if(game.age<25){
+    grid.innerHTML='<div class="stock-lock"><div class="lock-icon">25</div><b>주식시장은 아직 잠겨 있습니다.</b><p>조금 더 삶을 살아본 뒤인 25세부터 직접 매수와 매도를 할 수 있습니다.</p></div>';
+    return;
+  }
+
+  grid.innerHTML=stockDefs.map(s=>{
+    const m=game.stockMarket,p=m.prices[s.id],prev=m.prev[s.id]||p;
+    const change=prev?((p-prev)/prev*100):0;
+    const h=m.holdings[s.id],value=h.shares*p;
+    const gain=h.shares&&h.avg?((p-h.avg)/h.avg*100):0;
+    const cls=change>0?'up':change<0?'down':'flat';
+    const canTrade=game.alive;
+    return `<article class="stock-card">
+      <div class="stock-card-top">
+        <div class="stock-name"><b>${s.name}</b><span>${s.code} · ${s.sector}</span></div>
+        <div class="stock-price"><b>${p.toLocaleString()}원</b><span class="stock-change ${cls}">${change>=0?'+':''}${change.toFixed(1)}%</span></div>
+      </div>
+      ${stockSparkline(m.history[s.id],change)}
+      <div class="stock-position">
+        <div><span>보유</span><b>${h.shares.toLocaleString()}주</b></div>
+        <div><span>평균단가</span><b>${h.shares?Math.round(h.avg).toLocaleString()+'원':'—'}</b></div>
+        <div><span>평가액 · 수익률</span><b>${h.shares?`${fmtMoney(value)} · ${gain>=0?'+':''}${gain.toFixed(1)}%`:'—'}</b></div>
+      </div>
+      <div class="stock-trades">
+        <div class="stock-trade-group">
+          <button class="stock-buy" data-stock="${s.id}" data-side="buy" data-qty="1" ${!canTrade?'disabled':''}>1주 매수</button>
+          <button class="stock-buy" data-stock="${s.id}" data-side="buy" data-qty="5" ${!canTrade?'disabled':''}>5주</button>
+          <button class="stock-buy" data-stock="${s.id}" data-side="buy" data-qty="max" ${!canTrade?'disabled':''}>최대</button>
+        </div>
+        <div class="stock-trade-group">
+          <button class="stock-sell" data-stock="${s.id}" data-side="sell" data-qty="1" ${!canTrade||h.shares<1?'disabled':''}>1주 매도</button>
+          <button class="stock-sell" data-stock="${s.id}" data-side="sell" data-qty="5" ${!canTrade||h.shares<1?'disabled':''}>5주</button>
+          <button class="stock-sell" data-stock="${s.id}" data-side="sell" data-qty="max" ${!canTrade||h.shares<1?'disabled':''}>전량</button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+
+  grid.querySelectorAll('[data-stock]').forEach(btn=>{
+    btn.onclick=()=>tradeStock(btn.dataset.stock,btn.dataset.side,btn.dataset.qty);
+  });
+}
+function netWorth(){return game?game.cash+(game.invest||0)+stockPortfolioValue()+game.home-game.debt:0}
+
 function addLog(age,title,text){if(!game)return;game.log.push({age,title,text});if(game.log.length>140)game.log.shift()}
 function person(role){return game?.people.find(p=>p.role===role&&p.active!==false)}
 function addPerson(name,role,score=60,status='현재 인연'){if(!game)return null;const p={id:Date.now()+Math.random(),name,role,score:clamp(score),status,active:true,metAge:game.age};game.people.push(p);return p}
 function careerName(){if(!game)return'없음';if(game.career==='public'&&game.salary===0)return '공무원 준비생';if(game.career==='office'||game.career==='tech')return `${careerData[game.career].name} · ${ranks[Math.min(6,game.careerRank)]||'신입'}`;if(game.career==='business'&&game.careerRank>=5)return '사업가 · 대표';return careerData[game.career]?.name||'없음'}
 function renderEmpty(){
  $('hud').innerHTML=statDefs.map(x=>`<div class="hud-card"><span>${x[1]}</span><strong>—</strong><div class="mini"><i style="width:0%"></i></div></div>`).join('');
- $('metaGrid').innerHTML=[['나이','0세'],['직업','없음'],['연소득','0원'],['순자산','0원'],['현금','0원'],['투자','0원'],['주택','0원'],['부채','0원']].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+ $('metaGrid').innerHTML=[['나이','0세'],['직업','없음'],['연소득','0원'],['순자산','0원'],['현금','0원'],['투자자산','0원'],['주택','0원'],['부채','0원']].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
  $('people').innerHTML='';$('badges').innerHTML='';$('lifeLog').innerHTML='';const chart=$('statsChart');if(chart){const ctx=chart.getContext('2d');ctx.clearRect(0,0,chart.width,chart.height)}const legend=$('chartLegend');if(legend)legend.innerHTML='';
  $('scene').innerHTML=`<div class="kicker">WAITING FOR A LIFE</div><h2>아직 시작되지 않은 인생입니다.</h2><div class="story">이번에는 0세부터 시작합니다.\n처음에는 가진 것도, 만난 사람도 거의 없습니다.</div>`;
 }
-function renderAll(){if(!game){renderEmpty();return}renderHud();renderMeta();renderPeople();renderBadges();renderLog();renderStatChart();if(window.cloudScheduleGameSave)window.cloudScheduleGameSave(game)}
+function renderAll(){if(!game){renderEmpty();renderStockMarket();return}ensureStockMarket();advanceStockMarket();renderHud();renderMeta();renderPeople();renderBadges();renderLog();renderStatChart();renderStockMarket();if(window.cloudScheduleGameSave)window.cloudScheduleGameSave(game)}
 function renderHud(){$('hud').innerHTML=statDefs.map(([k,l])=>`<div class="hud-card"><span>${l}</span><strong>${Math.round(game[k])}</strong><div class="mini"><i style="width:${clamp(game[k])}%"></i></div></div>`).join('')}
-function renderMeta(){$('metaGrid').innerHTML=[['나이',game.age+'세'],['직업',careerName()],['연소득',fmtMoney(game.annualIncome||0)],['순자산',fmtMoney(netWorth())],['현금',fmtMoney(game.cash)],['투자',fmtMoney(game.invest)],['주택',fmtMoney(game.home)],['부채',fmtMoney(game.debt)]].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}
+function renderMeta(){$('metaGrid').innerHTML=[['나이',game.age+'세'],['직업',careerName()],['연소득',fmtMoney(game.annualIncome||0)],['순자산',fmtMoney(netWorth())],['현금',fmtMoney(game.cash)],['투자자산',fmtMoney((game.invest||0)+stockPortfolioValue())],['주택',fmtMoney(game.home)],['부채',fmtMoney(game.debt)]].map(x=>`<div class="meta"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}
 const chartSeries=[['happy','행복','#d9b36c'],['health','건강','#75a987'],['skill','능력','#7f91c3'],['relation','관계','#b686ad'],['stress','스트레스','#b76b6b'],['reputation','명성','#9c9388']];
 function recordStats(){if(!game)return;game.statHistory=game.statHistory||[];const row={age:game.age};chartSeries.forEach(([k])=>row[k]=Math.round(game[k]));const i=game.statHistory.findIndex(x=>x.age===game.age);if(i>=0)game.statHistory[i]=row;else game.statHistory.push(row);game.statHistory.sort((a,b)=>a.age-b.age)}
 function renderStatChart(){const c=$('statsChart'),legend=$('chartLegend');if(!c||!game)return;legend.innerHTML=chartSeries.map(s=>`<span class="chart-key"><i style="background:${s[2]}"></i>${s[1]}</span>`).join('');const cssW=Math.max(240,c.clientWidth||300),cssH=210,dpr=Math.min(window.devicePixelRatio||1,2);c.width=Math.round(cssW*dpr);c.height=Math.round(cssH*dpr);const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cssW,cssH);const pad={l:28,r:10,t:12,b:24},w=cssW-pad.l-pad.r,h=cssH-pad.t-pad.b;ctx.strokeStyle='#29313a';ctx.lineWidth=1;ctx.fillStyle='#737d88';ctx.font='10px system-ui';[0,25,50,75,100].forEach(v=>{const py=pad.t+h-(v/100)*h;ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(pad.l+w,py);ctx.stroke();ctx.fillText(String(v),3,py+3)});const data=game.statHistory||[];if(!data.length)return;const minA=data[0].age,maxA=Math.max(minA+1,data[data.length-1].age);const x=a=>pad.l+((a-minA)/(maxA-minA))*w,y=v=>pad.t+h-(clamp(v)/100)*h;ctx.fillStyle='#737d88';ctx.fillText(minA+'세',pad.l,cssH-5);ctx.fillText(data[data.length-1].age+'세',Math.max(pad.l,cssW-42),cssH-5);chartSeries.forEach(([k,label,color])=>{ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();data.forEach((row,i)=>{const px=x(row.age),py=y(row[k]);if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py)});ctx.stroke()})}
@@ -1586,7 +2305,7 @@ function checkAchievements(){const nw=netWorth();if(game.salary>0)unlock('firstJ
 
 // 100 endings: 10 archetypes x 10 closing tones
 const archetypes=[
- {id:'WEALTH',title:'금빛 탑',text:'돈과 선택권을 크게 늘린 삶',score:g=>Math.min(110,Math.max(0,netWorth()/12000000))+(g.invest>0?8:0)+(g.home>0?6:0)},
+ {id:'WEALTH',title:'금빛 탑',text:'돈과 선택권을 크게 늘린 삶',score:g=>Math.min(110,Math.max(0,netWorth()/12000000))+(((g.invest||0)+stockPortfolioValue())>0?8:0)+(g.home>0?6:0)},
  {id:'LOVE',title:'곁에 남은 얼굴들',text:'사람과 관계가 중심이 된 삶',score:g=>g.relation+(g.people.filter(p=>p.active).length*5)+(person('친구')?8:0)},
  {id:'FAMILY',title:'한 집의 시간',text:'가족의 시간이 중심이 된 삶',score:g=>(g.childCount||0)*28+(person('배우자')?38:0)+(person('부모님')?.score||0)*.35},
  {id:'CAREER',title:'이름을 남긴 사람',text:'일과 성취에 오래 힘을 쓴 삶',score:g=>g.reputation+(g.careerRank||0)*10+(g.salary>0?8:0)},
@@ -1655,6 +2374,98 @@ ${finalSummaryIntro()}</div><div class="result-grid"><div class="result-card"><s
 }
 function renderAcceptance(){$('scene').innerHTML=`<div class="kicker">THE END</div><h2>${game.name}, 자신의 삶을 받아들이다.</h2><div class="story">태어날 때 아무것도 없었던 한 사람이\n사람을 만나고, 무언가를 얻고, 잃고, 결국 여기까지 왔습니다.\n\n후회가 있었다는 사실이 이 삶을 실패로 만들지는 않습니다.\n좋은 삶이란 실수가 없는 삶이 아니라, 끝내 자기 삶을 부정하지 않을 수 있는 삶일지도 모릅니다.</div><div class="quote">“다시 살고 싶은 삶보다, 지금의 삶을 사랑할 수 있는 사람이 되는 것.”</div><div class="actions"><button class="secondary" id="toTitle">처음으로</button></div>`;$('toTitle').onclick=()=>window.showLanding()}
 
+
+
+// ===== Developer Notes UI =====
+window.__developerNotes=[];
+window.__selectedDeveloperNoteId=null;
+window.__editingDeveloperNoteId=null;
+window.__isDeveloper=false;
+
+(function(){
+  const overlay=$('developerNotesOverlay');
+  const list=$('developerNotesList');
+  const empty=$('developerNoteEmpty');
+  const view=$('developerNoteView');
+  const editor=$('developerNoteEditor');
+
+  function fmtDate(value){
+    if(!value)return '';
+    const d=value instanceof Date?value:new Date(value);
+    if(Number.isNaN(d.getTime()))return '';
+    return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  window.setDeveloperMode=function(enabled){
+    window.__isDeveloper=!!enabled;
+    $('developerBadge').classList.toggle('hidden',!enabled);
+    $('newDeveloperNoteBtn').classList.toggle('hidden',!enabled);
+    $('developerNoteAdminActions').classList.toggle('hidden',!enabled || !window.__selectedDeveloperNoteId);
+  };
+
+  window.renderDeveloperNotes=function(notes){
+    window.__developerNotes=Array.isArray(notes)?notes:[];
+    list.innerHTML='';
+    if(!window.__developerNotes.length){
+      list.innerHTML='<div class="devnotes-no-posts">아직 등록된 개발자 노트가 없습니다.</div>';
+      empty.classList.remove('hidden');view.classList.add('hidden');editor.classList.add('hidden');
+      return;
+    }
+    window.__developerNotes.forEach(note=>{
+      const btn=document.createElement('button');
+      btn.type='button';btn.className='devnote-list-item';
+      const b=document.createElement('b');b.textContent=note.title||'제목 없음';
+      const s=document.createElement('span');s.textContent=fmtDate(note.date);
+      btn.append(b,s);btn.onclick=()=>window.openDeveloperNote(note.id);list.appendChild(btn);
+    });
+    if(!window.__selectedDeveloperNoteId)window.openDeveloperNote(window.__developerNotes[0].id);
+  };
+
+  window.openDeveloperNote=function(id){
+    const note=window.__developerNotes.find(n=>n.id===id);if(!note)return;
+    window.__selectedDeveloperNoteId=id;window.__editingDeveloperNoteId=null;
+    empty.classList.add('hidden');editor.classList.add('hidden');view.classList.remove('hidden');
+    $('developerNoteDate').textContent=fmtDate(note.date);
+    $('developerNoteViewTitle').textContent=note.title||'제목 없음';
+    $('developerNoteViewBody').textContent=note.body||'';
+    $('developerNoteAdminActions').classList.toggle('hidden',!window.__isDeveloper);
+    [...list.querySelectorAll('.devnote-list-item')].forEach((el,i)=>el.classList.toggle('active',window.__developerNotes[i]?.id===id));
+  };
+
+  function openEditor(note=null){
+    if(!window.__isDeveloper)return;
+    window.__editingDeveloperNoteId=note?.id||null;
+    empty.classList.add('hidden');view.classList.add('hidden');editor.classList.remove('hidden');
+    $('developerNoteTitleInput').value=note?.title||'';
+    $('developerNoteBodyInput').value=note?.body||'';
+    $('saveDeveloperNoteBtn').textContent=note?'수정 완료':'게시하기';
+    setTimeout(()=>$('developerNoteTitleInput').focus(),30);
+  }
+
+  function closeNotes(){
+    overlay.classList.add('hidden');overlay.setAttribute('aria-hidden','true');document.body.style.overflow='';
+  }
+  window.openDeveloperNotesModal=function(){
+    overlay.classList.remove('hidden');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+    $('developerNotesStatus').textContent='개발자 노트를 불러오는 중입니다.';
+    if(window.loadDeveloperNotes)window.loadDeveloperNotes();
+  };
+
+  $('developerNotesBtn').onclick=window.openDeveloperNotesModal;
+  $('developerNotesClose').onclick=closeNotes;
+  $('developerNotesBackdrop').onclick=closeNotes;
+  $('newDeveloperNoteBtn').onclick=()=>openEditor();
+  $('cancelDeveloperNoteBtn').onclick=()=>window.__selectedDeveloperNoteId?window.openDeveloperNote(window.__selectedDeveloperNoteId):(editor.classList.add('hidden'),empty.classList.remove('hidden'));
+  $('editDeveloperNoteBtn').onclick=()=>{const n=window.__developerNotes.find(x=>x.id===window.__selectedDeveloperNoteId);if(n)openEditor(n)};
+  $('deleteDeveloperNoteBtn').onclick=async()=>{if(window.__isDeveloper&&window.__selectedDeveloperNoteId&&confirm('이 개발자 노트를 삭제할까요?')&&window.deleteDeveloperNote)await window.deleteDeveloperNote(window.__selectedDeveloperNoteId)};
+  editor.addEventListener('submit',async e=>{
+    e.preventDefault();if(!window.__isDeveloper)return;
+    const title=$('developerNoteTitleInput').value.trim(),body=$('developerNoteBodyInput').value.trim();
+    if(!title||!body){$('developerNotesStatus').textContent='제목과 내용을 모두 입력해주세요.';return}
+    if(window.saveDeveloperNote)await window.saveDeveloperNote({id:window.__editingDeveloperNoteId,title,body});
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.classList.contains('hidden'))closeNotes()});
+})();
 
 // ===== Theme Song Player =====
 (function(){
@@ -1849,7 +2660,13 @@ import {
   getDoc,
   setDoc,
   deleteDoc,
-  serverTimestamp
+  serverTimestamp,
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  addDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 /*
@@ -1887,6 +2704,9 @@ const landingLogoutBtn = document.getElementById("landingLogoutBtn");
 let mode = "login";
 let auth = null;
 let db = null;
+
+// Firebase Console > Authentication > Users에서 만든 개발자 전용 계정의 User UID를 넣으세요.
+const DEVELOPER_UID = "vF7w388EEUNEQWTSXF25uP6ZGag1";
 let currentUser = null;
 let saveTimer = null;
 let pendingGameSnapshot = null;
@@ -1965,6 +2785,55 @@ if(!configured){
   const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   db = getFirestore(app);
+
+  const isDeveloperUser=user=>!!user && DEVELOPER_UID!=="PASTE_DEVELOPER_UID_HERE" && user.uid===DEVELOPER_UID;
+
+  window.loadDeveloperNotes=async()=>{
+    if(!db)return;
+    try{
+      $('developerNotesStatus').textContent='개발자 노트를 불러오는 중입니다.';
+      const snap=await getDocs(query(collection(db,'developerNotes'),orderBy('createdAt','desc')));
+      const notes=snap.docs.map(d=>{
+        const x=d.data()||{};
+        const raw=x.updatedAt||x.createdAt;
+        const dt=raw?.toDate?raw.toDate():null;
+        return{id:d.id,title:x.title||'',body:x.body||'',date:dt};
+      });
+      window.renderDeveloperNotes(notes);
+      $('developerNotesStatus').textContent=window.__isDeveloper?'개발자 계정으로 로그인되어 있습니다.':'모든 사용자가 읽을 수 있으며, 개발자 계정만 글을 작성할 수 있습니다.';
+    }catch(err){
+      console.warn('Developer notes load failed',err);
+      $('developerNotesList').innerHTML='<div class="devnotes-no-posts">개발자 노트를 불러오지 못했습니다.<br>Firestore 규칙을 확인해주세요.</div>';
+      $('developerNotesStatus').textContent='개발자 노트를 불러오지 못했습니다.';
+    }
+  };
+
+  window.saveDeveloperNote=async payload=>{
+    if(!currentUser||!isDeveloperUser(currentUser))return;
+    try{
+      $('developerNotesStatus').textContent='저장하는 중입니다.';
+      if(payload.id){
+        await updateDoc(doc(db,'developerNotes',payload.id),{title:payload.title,body:payload.body,updatedAt:serverTimestamp(),authorUid:currentUser.uid});
+      }else{
+        await addDoc(collection(db,'developerNotes'),{title:payload.title,body:payload.body,createdAt:serverTimestamp(),updatedAt:serverTimestamp(),authorUid:currentUser.uid});
+      }
+      window.__editingDeveloperNoteId=null;window.__selectedDeveloperNoteId=null;
+      await window.loadDeveloperNotes();
+      $('developerNotesStatus').textContent='개발자 노트가 저장되었습니다.';
+    }catch(err){console.warn('Developer note save failed',err);$('developerNotesStatus').textContent='저장하지 못했습니다. 개발자 UID와 Firestore 규칙을 확인해주세요.'}
+  };
+
+  window.deleteDeveloperNote=async id=>{
+    if(!currentUser||!isDeveloperUser(currentUser))return;
+    try{
+      $('developerNotesStatus').textContent='삭제하는 중입니다.';
+      await deleteDoc(doc(db,'developerNotes',id));
+      window.__selectedDeveloperNoteId=null;
+      await window.loadDeveloperNotes();
+      $('developerNotesStatus').textContent='개발자 노트가 삭제되었습니다.';
+    }catch(err){console.warn('Developer note delete failed',err);$('developerNotesStatus').textContent='삭제하지 못했습니다.'}
+  };
+
   await setPersistence(auth, browserLocalPersistence);
   hint.textContent = "";
 
@@ -2046,6 +2915,7 @@ if(!configured){
 
   onAuthStateChanged(auth,async(user)=>{
     currentUser = user || null;
+    window.setDeveloperMode?.(isDeveloperUser(currentUser));
     if(!user){
       window.__firebaseUser=null;
       document.getElementById("accountUser").textContent = "게스트";
